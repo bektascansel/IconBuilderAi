@@ -1,7 +1,8 @@
-﻿using MextFullstackSaas.Application.Common.Interfaces;
-using MextFullstackSaas.Application.Common.Models;
-using MextFullstackSaas.Application.Common.Models.Auth;
-using MextFullstackSaas.Application.Features.UserAuth.Commands.Register;
+﻿
+using MextFullstackSaaS.Application.Common.Interfaces;
+using MextFullstackSaaS.Application.Common.Models;
+using MextFullstackSaaS.Application.Common.Models.Auth;
+using MextFullstackSaaS.Application.Features.UserAuth.Commands.Register;
 using MextFullstackSaaS.Domain.Entities;
 using MextFullstackSaaS.Domain.Identity;
 using Microsoft.AspNetCore.Identity;
@@ -11,7 +12,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MextFullstackSaas.Infrastructure.Services
+namespace MextFullstackSaaS.Infrastructure.Services
 {
     public class IdentityManager : IIdentityService
     {
@@ -46,8 +47,10 @@ namespace MextFullstackSaas.Infrastructure.Services
                 throw new Exception("User registration failed");
             }
 
+            //kullanıcının emailine bagpı random bir email
+            var token=await _userManager.GenerateEmailConfirmationTokenAsync(user);
 
-            return new UserAuthRegisterResponseDto(user.Id, user.Email);
+            return new UserAuthRegisterResponseDto(user.Id, user.Email,user.FirstName,token);
         }
 
         public Task<JwtDto> SignInAsync(UserAuthRegisterCommand userAuthRegisterCommand, CancellationToken cancellationToken)

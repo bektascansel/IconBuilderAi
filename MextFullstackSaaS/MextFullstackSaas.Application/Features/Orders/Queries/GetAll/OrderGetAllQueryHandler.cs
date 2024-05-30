@@ -1,6 +1,5 @@
 ﻿using MediatR;
-using MextFullstackSaas.Application.Common.Interfaces;
-
+using MextFullstackSaaS.Application.Common.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
 namespace MextFullstackSaaS.Application.Features.Orders.Queries.GetAll

@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MextFullstackSaas.Application.Features.Orders.Queries.GetById
+namespace MextFullstackSaaS.Application.Features.Orders.Queries.GetById
 {
     public class OrderGetByIdQuery:IRequest<OrderGetByIdDto>
     {

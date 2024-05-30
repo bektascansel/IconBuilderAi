@@ -1,4 +1,5 @@
-﻿using MextFullstackSaas.Application.Common.Models;
+﻿
+using MextFullstackSaaS.Application.Common.Models;
 using MextFullstackSaaS.Domain.Identity;
 using System;
 using System.Collections.Generic;
@@ -6,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MextFullstackSaas.Application.Common.Interfaces
+namespace MextFullstackSaaS.Application.Common.Interfaces
 {
     public interface IJwtService
     {

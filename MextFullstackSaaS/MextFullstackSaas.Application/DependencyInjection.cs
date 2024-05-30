@@ -1,7 +1,7 @@
 ﻿using FluentValidation;
 using MediatR;
-using MextFullstackSaas.Application.Common.Behaviours;
-using MextFullstackSaas.Application.Common.Interfaces;
+using Microsoft.Extensions.DependencyInjection;
+using System.Reflection;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
@@ -9,8 +9,9 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using MextFullstackSaaS.Application.Common.Behaviours;
 
-namespace MextFullstackSaas.Application
+namespace MextFullstackSaaS.Application
 {
     public static class DependencyInjection
     {

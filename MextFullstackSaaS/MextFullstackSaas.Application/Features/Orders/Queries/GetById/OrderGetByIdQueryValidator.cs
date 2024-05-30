@@ -1,5 +1,5 @@
 ﻿using FluentValidation;
-using MextFullstackSaas.Application.Common.Interfaces;
+using MextFullstackSaaS.Application.Common.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MextFullstackSaas.Application.Features.Orders.Queries.GetById
+namespace MextFullstackSaaS.Application.Features.Orders.Queries.GetById
 {
     public  class OrderGetByIdQueryValidator:AbstractValidator<OrderGetByIdQuery>
     {

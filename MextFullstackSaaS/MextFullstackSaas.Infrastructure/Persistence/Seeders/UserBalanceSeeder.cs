@@ -9,7 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MextFullstackSaas.Infrastructure.Persistence.Seeders
+namespace MextFullstackSaaS.Infrastructure.Persistence.Seeders
 {
     public class UserBalanceSeeder : IEntityTypeConfiguration<UserBalance>
     {

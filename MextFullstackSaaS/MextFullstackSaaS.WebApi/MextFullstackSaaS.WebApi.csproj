@@ -20,8 +20,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\MextFullstackSaas.Application\MextFullstackSaas.Application.csproj" />
-    <ProjectReference Include="..\MextFullstackSaas.Infrastructure\MextFullstackSaas.Infrastructure.csproj" />
+    <ProjectReference Include="..\MextFullstackSaas.Application\MextFullstackSaaS.Application.csproj" />
+    <ProjectReference Include="..\MextFullstackSaas.Infrastructure\MextFullstackSaaS.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>

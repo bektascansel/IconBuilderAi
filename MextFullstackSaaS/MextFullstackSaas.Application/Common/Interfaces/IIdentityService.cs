@@ -1,13 +1,14 @@
-﻿using MextFullstackSaas.Application.Common.Models;
-using MextFullstackSaas.Application.Common.Models.Auth;
-using MextFullstackSaas.Application.Features.UserAuth.Commands.Register;
+﻿
+using MextFullstackSaaS.Application.Common.Models;
+using MextFullstackSaaS.Application.Common.Models.Auth;
+using MextFullstackSaaS.Application.Features.UserAuth.Commands.Register;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MextFullstackSaas.Application.Common.Interfaces
+namespace MextFullstackSaaS.Application.Common.Interfaces
 {
     public interface IIdentityService
     {

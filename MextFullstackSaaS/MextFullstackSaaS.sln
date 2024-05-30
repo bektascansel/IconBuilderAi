@@ -5,11 +5,11 @@ VisualStudioVersion = 17.8.34322.80
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MextFullstackSaaS.Domain", "MextFullstackSaaS.Domain\MextFullstackSaaS.Domain.csproj", "{D17D9540-7C84-4DD0-B53A-F0853ECCC957}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MextFullstackSaas.Application", "MextFullstackSaas.Application\MextFullstackSaas.Application.csproj", "{D337699E-D6A1-4FD2-A6B6-EA0FC40D7DE2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MextFullstackSaaS.Application", "MextFullstackSaas.Application\MextFullstackSaaS.Application.csproj", "{D337699E-D6A1-4FD2-A6B6-EA0FC40D7DE2}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MextFullstackSaas.Infrastructure", "MextFullstackSaas.Infrastructure\MextFullstackSaas.Infrastructure.csproj", "{D45074EE-C76B-4FF7-BECF-D44291AD62BF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MextFullstackSaaS.Infrastructure", "MextFullstackSaas.Infrastructure\MextFullstackSaaS.Infrastructure.csproj", "{D45074EE-C76B-4FF7-BECF-D44291AD62BF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MextFullstackSaaS.WebApi", "MextFullstackSaaS.WebApi\MextFullstackSaaS.WebApi.csproj", "{AF8CC27C-9490-46BB-9110-8BA710CB913A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MextFullstackSaaS.WebApi", "MextFullstackSaaS.WebApi\MextFullstackSaaS.WebApi.csproj", "{AF8CC27C-9490-46BB-9110-8BA710CB913A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

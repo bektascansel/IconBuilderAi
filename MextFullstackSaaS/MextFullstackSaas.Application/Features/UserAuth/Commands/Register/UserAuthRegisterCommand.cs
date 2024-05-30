@@ -1,5 +1,6 @@
 ﻿using MediatR;
 using MextFullstackSaas.Application.Common.Models;
+using MextFullstackSaaS.Application.Common.Models;
 using MextFullstackSaaS.Domain.Common;
 using MextFullstackSaaS.Domain.Entities;
 using MextFullstackSaaS.Domain.Identity;
@@ -9,7 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MextFullstackSaas.Application.Features.UserAuth.Commands.Register
+namespace MextFullstackSaaS.Application.Features.UserAuth.Commands.Register
 {
     public class UserAuthRegisterCommand:IRequest<ResponseDto<JwtDto>>
     {

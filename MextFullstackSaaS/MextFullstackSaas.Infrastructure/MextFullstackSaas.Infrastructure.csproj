@@ -24,7 +24,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\MextFullstackSaas.Application\MextFullstackSaas.Application.csproj" />
+    <ProjectReference Include="..\MextFullstackSaas.Application\MextFullstackSaaS.Application.csproj" />
   </ItemGroup>
 
 	

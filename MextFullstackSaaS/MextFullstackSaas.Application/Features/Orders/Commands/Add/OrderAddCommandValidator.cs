@@ -1,5 +1,5 @@
 ﻿using FluentValidation;
-using MextFullstackSaas.Application.Common.Interfaces;
+using MextFullstackSaaS.Application.Common.Interfaces;
 using MextFullstackSaaS.Domain.Enums;
 using System;
 using System.Collections.Generic;
@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MextFullstackSaas.Application.Features.Orders.Commands.Add
+namespace MextFullstackSaaS.Application.Features.Orders.Commands.Add
 {
     public class OrderAddCommandValidator:AbstractValidator<OrderAddCommand>
     {

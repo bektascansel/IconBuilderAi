@@ -1,8 +1,9 @@
-﻿using MextFullstackSaas.Application.Common.Interfaces;
-using MextFullstackSaas.Infrastructure.Services;
+﻿
+using MextFullstackSaaS.Application.Common.Interfaces;
 using MextFullstackSaaS.Domain.Identity;
 using MextFullstackSaaS.Domain.Settings;
 using MextFullstackSaaS.Infrastructure.Persistence.Contexts;
+using MextFullstackSaaS.Infrastructure.Services;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -35,12 +36,14 @@ namespace MextFullstackSaaS.Infrastructure
 
 
                 options.User.RequireUniqueEmail = true;
+                
             })
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultTokenProviders();
 
             services.AddScoped<IIdentityService, IdentityManager>();
             services.AddScoped<IJwtService, JwtManager>();
+            services.AddScoped<IEmailService,ResendEmailManager>();
 
             //resend
             services.AddOptions();
@@ -50,6 +53,8 @@ namespace MextFullstackSaaS.Infrastructure
                 o.ApiToken = configuration.GetSection("ReSendApiKey").Value!;
             });
             services.AddTransient<IResend, ResendClient>();
+
+
 
             return services;
         }

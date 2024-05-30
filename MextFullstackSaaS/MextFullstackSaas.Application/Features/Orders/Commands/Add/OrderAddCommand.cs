@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MextFullstackSaas.Application.Features.Orders.Commands.Add
+namespace MextFullstackSaaS.Application.Features.Orders.Commands.Add
 {
     public class OrderAddCommand: IRequest<ResponseDto<Guid>>
     {

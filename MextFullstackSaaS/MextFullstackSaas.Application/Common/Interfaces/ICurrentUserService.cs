@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MextFullstackSaas.Application.Common.Interfaces
+namespace MextFullstackSaaS.Application.Common.Interfaces
 {
     public interface ICurrentUserService
     {

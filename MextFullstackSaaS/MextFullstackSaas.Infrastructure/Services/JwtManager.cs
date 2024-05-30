@@ -1,5 +1,6 @@
-﻿using MextFullstackSaas.Application.Common.Interfaces;
-using MextFullstackSaas.Application.Common.Models;
+﻿
+using MextFullstackSaaS.Application.Common.Interfaces;
+using MextFullstackSaaS.Application.Common.Models;
 using MextFullstackSaaS.Domain.Identity;
 using MextFullstackSaaS.Domain.Settings;
 using Microsoft.AspNetCore.Identity;
@@ -13,7 +14,7 @@ using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MextFullstackSaas.Infrastructure.Services
+namespace MextFullstackSaaS.Infrastructure.Services
 {
     public class JwtManager:IJwtService
     {

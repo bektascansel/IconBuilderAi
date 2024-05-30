@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MextFullstackSaas.Application.Features.Orders.Commands.Delete
+namespace MextFullstackSaaS.Application.Features.Orders.Commands.Delete
 {
     public class OrderDeleteCommand:IRequest<Guid>
     {

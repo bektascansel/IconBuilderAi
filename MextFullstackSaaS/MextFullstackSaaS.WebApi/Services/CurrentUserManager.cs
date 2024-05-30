@@ -1,4 +1,5 @@
-﻿using MextFullstackSaas.Application.Common.Interfaces;
+﻿
+using MextFullstackSaaS.Application.Common.Interfaces;
 using System.Security.Claims;
 
 namespace MextFullstackSaaS.WebApi.Services

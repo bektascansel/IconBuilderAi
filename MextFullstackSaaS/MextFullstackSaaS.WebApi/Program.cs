@@ -1,11 +1,11 @@
-using MextFullstackSaas.Application;
-using MextFullstackSaas.Application.Common.Interfaces;
 using MextFullstackSaaS.Infrastructure;
 using MextFullstackSaaS.WebApi;
 using MextFullstackSaaS.WebApi.Filters;
-using MextFullstackSaaS.WebApi.Services;
+using MextFullstackSaaS.Application;
+
 using Microsoft.AspNetCore.Mvc;
 using Serilog;
+
 
 Log.Logger = new LoggerConfiguration()
     .WriteTo.Console()
@@ -66,3 +66,7 @@ finally
 {
     Log.CloseAndFlush();
 }
+
+
+
+

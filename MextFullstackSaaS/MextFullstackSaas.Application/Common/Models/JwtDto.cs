@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MextFullstackSaas.Application.Common.Models
+namespace MextFullstackSaaS.Application.Common.Models
 {
     public class JwtDto
     {
