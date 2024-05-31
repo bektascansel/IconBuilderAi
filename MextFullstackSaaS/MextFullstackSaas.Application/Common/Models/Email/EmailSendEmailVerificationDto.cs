@@ -1,27 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿namespace MextFullstackSaaS.Application.Common.Models.Emails;
 
-namespace MextFullstackSaas.Application.Common.Models.Email
+public class EmailSendEmailVerificationDto
 {
-    public class EmailSendEmailVerificationDto
+    public string Email { get; set; }
+    public string FirstName { get; set; }
+    public string Token { get; set; }
+
+    public EmailSendEmailVerificationDto(string email, string firstName, string token)
     {
-        public string Email { get; set; }
+        Email = email;
+        FirstName = firstName;
+        Token = token;
+    }
 
-        public string FirstName { get; set; }
-        public string Token { get; set; }
+    public EmailSendEmailVerificationDto()
+    {
 
-        public EmailSendEmailVerificationDto(string token, string firstName, string email)
-        {
-            Token = token;
-            FirstName = firstName;
-            Email = email;
-        }
-
-        public EmailSendEmailVerificationDto()
-        {
-        }
     }
 }
