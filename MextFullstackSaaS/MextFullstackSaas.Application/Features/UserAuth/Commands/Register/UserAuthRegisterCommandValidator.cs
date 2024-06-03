@@ -10,7 +10,7 @@ public class UserAuthRegisterCommandValidator : AbstractValidator<UserAuthRegist
     {
         _identityService = identityService;
 
-    https://codeshare.io/zlPJyO
+   
         RuleFor(x => x.Email)
             .NotEmpty().WithMessage("Email is required")
             .EmailAddress().WithMessage("Email is not valid");
