@@ -12,10 +12,12 @@ namespace MextFullstackSaaS.Application.Features.Orders.Commands.Delete
     public class OrderDeleteCommandValidator:AbstractValidator<OrderDeleteCommand>
     {
         private readonly IApplicationDbContext _dbContext;
+        private readonly ICurrentUserService _currentUserService;
 
-        public OrderDeleteCommandValidator(IApplicationDbContext dbContext)
+        public OrderDeleteCommandValidator(IApplicationDbContext dbContext, ICurrentUserService currentUserService)
         {
             _dbContext = dbContext;
+            _currentUserService = currentUserService;
 
 
             RuleFor(x => x.Id)
@@ -24,11 +26,16 @@ namespace MextFullstackSaaS.Application.Features.Orders.Commands.Delete
                .WithMessage("Please select a valid order.");
 
             RuleFor(x => x.Id)
-                .MustAsync(IsOrderExists)
+                .MustAsync(IsOrderExistsAsync)
                 .WithMessage("The selected order does not exist in the database.");
+
+            RuleFor(x => x.Id)
+                .MustAsync(IsTheSameUserAsync)
+                .WithMessage("You are not authorized to delete this order");
+
         }
 
-        public Task<bool> IsOrderExists(Guid id,CancellationToken cancellationToken)
+        private Task<bool> IsOrderExistsAsync(Guid id,CancellationToken cancellationToken)
         {
             //if the order exitss we will return, otherwise we will return false
             // if we return true this will be a valid order
@@ -36,6 +43,17 @@ namespace MextFullstackSaaS.Application.Features.Orders.Commands.Delete
             return _dbContext.Orders.AnyAsync(x=>x.Id==id,cancellationToken);
         }
 
-      
+        private Task<bool> IsTheSameUserAsync(Guid id, CancellationToken cancellationToken)
+        {
+            //if the order exitss we will return, otherwise we will return false
+            // if we return true this will be a valid order
+
+            return _dbContext
+                .Orders
+                .Where(x => x.UserId == _currentUserService.UserId)
+                .AnyAsync(x => x.Id == id, cancellationToken);
+        }
+
+
     }
 }

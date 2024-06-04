@@ -1,14 +1,15 @@
 ﻿using FluentValidation;
+using MextFullstackSaaS.Application.Common.FluentValidation.BaseValidators;
 using MextFullstackSaaS.Application.Common.Interfaces;
 
 namespace MextFullstackSaaS.Application.Features.UserAuth.Commands.Register;
 
-public class UserAuthRegisterCommandValidator : AbstractValidator<UserAuthRegisterCommand>
+public class UserAuthRegisterCommandValidator : UserAuthValidatorBase<UserAuthRegisterCommand>
 {
-    private readonly IIdentityService _identityService;
-    public UserAuthRegisterCommandValidator(IIdentityService identityService)
+    
+    public UserAuthRegisterCommandValidator(IIdentityService identityService):base(identityService)
     {
-        _identityService = identityService;
+        
 
    
         RuleFor(x => x.Email)

@@ -42,5 +42,11 @@ namespace MextFullstackSaaS.WebApi.Controllers
         {
             return Ok(await _mediatr.Send(new OrderGetAllQuery(), cancellationToken));
         }
+
+        [HttpDelete]
+        public async Task<IActionResult> Delete(OrderDeleteCommand command,CancellationToken cancellationToken)
+        {
+            return Ok(await _mediatr.Send(command, cancellationToken));
+        }
     }
 }

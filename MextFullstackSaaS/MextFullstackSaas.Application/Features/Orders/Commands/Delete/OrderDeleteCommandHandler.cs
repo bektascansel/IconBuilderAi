@@ -1,5 +1,6 @@
 ﻿using MediatR;
 using MextFullstackSaaS.Application.Common.Interfaces;
+using MextFullstackSaaS.Domain.Common;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -9,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace MextFullstackSaaS.Application.Features.Orders.Commands.Delete
 {
-    public class OrderDeleteCommandHandler : IRequestHandler<OrderDeleteCommand, Guid>
+    public class OrderDeleteCommandHandler : IRequestHandler<OrderDeleteCommand,ResponseDto<Guid>>
     {
         private readonly IApplicationDbContext _dbContext;
 
@@ -18,18 +19,19 @@ namespace MextFullstackSaaS.Application.Features.Orders.Commands.Delete
             _dbContext = dbContext;
         }
 
-        public async Task<Guid> Handle(OrderDeleteCommand request, CancellationToken cancellationToken)
+      
+
+        public async Task<ResponseDto<Guid>> Handle(OrderDeleteCommand request, CancellationToken cancellationToken)
         {
             var order = await _dbContext
-                .Orders
-                .FirstOrDefaultAsync(x => x.Id == request.Id,cancellationToken);
+                 .Orders
+                 .FirstOrDefaultAsync(x => x.Id == request.Id, cancellationToken);
 
-            _dbContext.Orders .Remove(order);
+            _dbContext.Orders.Remove(order);
 
             await _dbContext.SaveChangesAsync(cancellationToken);
 
-            return order.Id;
-
+            return new ResponseDto<Guid>(order.Id, "Your order deleted successfully");
         }
     }
 }
