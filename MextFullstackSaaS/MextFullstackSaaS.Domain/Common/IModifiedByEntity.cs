@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MextFullstackSaaS.Domain.Common
 {
-    public interface  IModifiedByEntitiy
+    public interface  IModifiedByEntity
     {
         DateTimeOffset? ModifiedOn {  get; set; }
         string? ModifiedByUserId { get; set; }

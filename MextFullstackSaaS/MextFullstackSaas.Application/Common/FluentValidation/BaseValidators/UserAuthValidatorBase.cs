@@ -18,6 +18,9 @@ namespace MextFullstackSaaS.Application.Common.FluentValidation.BaseValidators
         public UserAuthValidatorBase(IIdentityService identityService)
         {
             _identityService = identityService;
+
+
+           
         }
 
         protected bool IsEmail(string email)

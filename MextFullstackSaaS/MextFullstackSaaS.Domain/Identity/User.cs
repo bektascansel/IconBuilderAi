@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 namespace MextFullstackSaaS.Domain.Identity
 {
     // AppUser / ApplicationUSer
-    public class User : IdentityUser<Guid>, IEntity<Guid>, ICreatedByEntity, IModifiedByEntitiy
+    public class User : IdentityUser<Guid>, IEntity<Guid>, ICreatedByEntity, IModifiedByEntity
     {
         public string? FirstName { get; set; }
         public string? LastName { get; set; }
