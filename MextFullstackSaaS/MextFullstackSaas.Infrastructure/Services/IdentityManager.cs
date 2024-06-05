@@ -1,8 +1,10 @@
 ﻿using System.Net;
+using System.Web;
 using MextFullstackSaaS.Application.Common.Interfaces;
 using MextFullstackSaaS.Application.Common.Models;
 using MextFullstackSaaS.Application.Common.Models.Auth;
 using MextFullstackSaaS.Application.Features.UserAuth.Commands.Login;
+using MextFullstackSaaS.Application.Features.UserAuth.Commands.Password.ResetPassword;
 using MextFullstackSaaS.Application.Features.UserAuth.Commands.Register;
 using MextFullstackSaaS.Application.Features.UserAuth.Commands.VerifyEmail;
 using MextFullstackSaaS.Domain.Identity;
@@ -84,6 +86,34 @@ namespace MextFullstackSaaS.Infrastructure.Services
         public Task<bool> CheckIfEmailVerifiedAsync(string email, CancellationToken cancellationToken)
         {
             return _userManager.Users.AnyAsync(x => x.Email == email && x.EmailConfirmed, cancellationToken);
+        }
+
+        public async Task<UserAuthResetPasswordResponseDto> ForgotPasswordAsync(string email, CancellationToken cancellationToken)
+        {
+
+            var user = await _userManager.FindByEmailAsync(email);
+
+            var token = await _userManager.GeneratePasswordResetTokenAsync(user);
+
+            return new UserAuthResetPasswordResponseDto(user.Id, user.Email, user.FirstName, token);
+
+        }
+
+        public async Task<bool> ResetPasswordAsync(UserAuthResetPasswordCommand command, CancellationToken cancellationToken)
+        {
+            var user = await _userManager.FindByEmailAsync(command.Email);
+            var decodedToken = HttpUtility.UrlDecode(command.Token);
+
+   
+            var result =await _userManager.ResetPasswordAsync(user, decodedToken, command.Password);
+            if(!result.Succeeded)
+            {
+                throw new Exception("Password reset failed");
+            }
+
+
+
+            return true;
         }
     }
 }

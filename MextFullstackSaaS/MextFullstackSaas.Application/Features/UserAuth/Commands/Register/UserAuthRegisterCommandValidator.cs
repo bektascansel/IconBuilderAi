@@ -39,4 +39,6 @@ public class UserAuthRegisterCommandValidator : UserAuthValidatorBase<UserAuthRe
     {
         return !await _identityService.IsEmailExistsAsync(email, cancellationToken);
     }
+
+   
 }
