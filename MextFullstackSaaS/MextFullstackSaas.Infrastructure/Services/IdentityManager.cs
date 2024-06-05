@@ -115,5 +115,19 @@ namespace MextFullstackSaaS.Infrastructure.Services
 
             return true;
         }
+
+        public async Task<bool> ChangePasswordAsync(Guid userId, string currentPassword, string newPassword, CancellationToken cancellationToken)
+        {
+             var user=await _userManager.FindByIdAsync(userId.ToString());
+              var result = await _userManager.ChangePasswordAsync(user, currentPassword, newPassword);
+            if (!result.Succeeded)
+            {
+                throw new Exception("Password change failed");
+            }
+
+            return true;
+
+
+        }
     }
 }

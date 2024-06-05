@@ -1,9 +1,11 @@
 ﻿using MediatR;
+using MextFullstackSaaS.Application.Features.UserAuth.Commands.ChangePassword;
 using MextFullstackSaaS.Application.Features.UserAuth.Commands.Login;
 using MextFullstackSaaS.Application.Features.UserAuth.Commands.Password.ForgotPassword;
 using MextFullstackSaaS.Application.Features.UserAuth.Commands.Password.ResetPassword;
 using MextFullstackSaaS.Application.Features.UserAuth.Commands.Register;
 using MextFullstackSaaS.Application.Features.UserAuth.Commands.VerifyEmail;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -61,6 +63,16 @@ namespace MextFullstackSaaS.WebApi.Controllers
         [HttpGet("reset-password")]
 
         public async Task<IActionResult> ResetPasswordAsync([FromQuery] UserAuthResetPasswordCommand command, CancellationToken cancellationToken)
+        {
+
+            return Ok(await _mediatr.Send(command, cancellationToken));
+        }
+
+
+        [Authorize]
+        [HttpGet("change-password")]
+
+        public async Task<IActionResult> ChangePasswordAsync([FromQuery] UserAuthChangePasswordCommand command, CancellationToken cancellationToken)
         {
 
             return Ok(await _mediatr.Send(command, cancellationToken));

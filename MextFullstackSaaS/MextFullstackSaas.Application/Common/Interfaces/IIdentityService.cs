@@ -1,15 +1,11 @@
-﻿
-using MextFullstackSaaS.Application.Common.Models;
+﻿using MextFullstackSaaS.Application.Common.Models;
 using MextFullstackSaaS.Application.Common.Models.Auth;
 using MextFullstackSaaS.Application.Features.UserAuth.Commands.Login;
 using MextFullstackSaaS.Application.Features.UserAuth.Commands.Password.ResetPassword;
 using MextFullstackSaaS.Application.Features.UserAuth.Commands.Register;
+
 using MextFullstackSaaS.Application.Features.UserAuth.Commands.VerifyEmail;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace MextFullstackSaaS.Application.Common.Interfaces
 {
@@ -25,6 +21,8 @@ namespace MextFullstackSaaS.Application.Common.Interfaces
         Task<UserAuthResetPasswordResponseDto> ForgotPasswordAsync(string email, CancellationToken cancellationToken);
 
         Task<bool> ResetPasswordAsync(UserAuthResetPasswordCommand command, CancellationToken cancellationToken);
+
+        Task<bool> ChangePasswordAsync(Guid userId, string currentPassword, string newPassword, CancellationToken cancellationToken);
 
 
     }
