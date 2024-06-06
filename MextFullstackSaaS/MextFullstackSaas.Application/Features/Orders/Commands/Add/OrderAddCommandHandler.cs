@@ -1,5 +1,6 @@
 ﻿using MediatR;
 using MextFullstackSaaS.Application.Common.Interfaces;
+using MextFullstackSaaS.Application.Common.Models.OpenAI;
 using MextFullstackSaaS.Domain.Common;
 using System;
 using System.Collections.Generic;
@@ -13,11 +14,13 @@ namespace MextFullstackSaaS.Application.Features.Orders.Commands.Add
     {
         private readonly IApplicationDbContext _dbContext;
         private readonly ICurrentUserService _currentUserService;
+        private readonly IOpenAIService _openAService;
 
-        public OrderAddCommandHandler(IApplicationDbContext dbContext, ICurrentUserService currentUserService)
+        public OrderAddCommandHandler(IApplicationDbContext dbContext, ICurrentUserService currentUserService, IOpenAIService openAService)
         {
             _dbContext = dbContext;
             _currentUserService = currentUserService;
+            _openAService = openAService;
         }
 
 
@@ -27,7 +30,7 @@ namespace MextFullstackSaaS.Application.Features.Orders.Commands.Add
 
             order.UserId = _currentUserService.UserId;
             order.CreatedByUserId = _currentUserService.UserId.ToString();
-
+            order.Urls = await _openAService.DallECreateIconAsync(DallECreateIconRequestDto.MapFromOrderAddCommand(request),cancellationToken);
             // TODO: make request to the gemini or dall-e3
 
             _dbContext.Orders.Add(order);
