@@ -3,10 +3,12 @@ using MextFullstackSaaS.Application.Features.Orders.Commands.Add;
 using MextFullstackSaaS.Application.Features.Orders.Commands.Delete;
 using MextFullstackSaaS.Application.Features.Orders.Queries.GetAll;
 using MextFullstackSaaS.Application.Features.Orders.Queries.GetById;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace MextFullstackSaaS.WebApi.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class OrdersController : ControllerBase

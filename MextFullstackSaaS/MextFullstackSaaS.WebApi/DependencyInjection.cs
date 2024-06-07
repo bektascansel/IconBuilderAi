@@ -1,29 +1,10 @@
-﻿/*
-using MextFullstackSaaS.Application.Common.Interfaces;
-using MextFullstackSaaS.WebApi.Services;
-
-namespace MextFullstackSaaS.WebApi
-{
-    public static class DependencyInjection
-    {
-
-        public static IServiceCollection AddWebServices(this IServiceCollection services, IConfiguration configuration)
-        {
-            services.AddHttpContextAccessor();
-
-            services.AddScoped<ICurrentUserService, CurrentUserManager>();
-
-            return services;
-        }
-
-    }
-}
-*/
-
+﻿
+using System.Globalization;
 using System.Text;
 using MextFullstackSaaS.Application.Common.Interfaces;
 using MextFullstackSaaS.WebApi.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Localization;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 
@@ -33,6 +14,28 @@ namespace MextFullstackSaaS.WebApi
     {
         public static IServiceCollection AddWebServices(this IServiceCollection services, IConfiguration configuration)
         {
+            services.AddLocalization(options =>
+            {
+                options.ResourcesPath = "Resources";
+            });
+
+            services.Configure<RequestLocalizationOptions>(options =>
+            {
+                var defaultCulture=new CultureInfo("en-GB");
+                var supportedCultures = new List<CultureInfo> {
+
+                    defaultCulture,
+                    new CultureInfo("tr-TR")
+                };
+                options.DefaultRequestCulture = new RequestCulture(defaultCulture);
+
+                options.SupportedCultures= supportedCultures;
+                options.SupportedUICultures= supportedCultures;
+
+                options.ApplyCurrentCultureToResponseHeaders = true;
+            });
+
+
             services.AddEndpointsApiExplorer();
 
             services.AddSwaggerGen(setupAction =>
@@ -47,13 +50,13 @@ namespace MextFullstackSaaS.WebApi
                         Description = "Through this API you can access MextFullStackSaaS App's details",
                         Contact = new OpenApiContact()
                         {
-                            Email = "alper.tunga@yazilim.academy",
-                            Name = "Alper Tunga",
+                            Email = "cansel.bektas6447@gmail.com",
+                            Name = "Cansel Bektaş",
                             Url = new Uri("https://yazilim.academy/")
                         },
                         License = new OpenApiLicense()
                         {
-                            Name = "© 2024 Yazılım Academy Tüm Hakları Saklıdır",
+                            Name = "© 2024 IconBuilderApp Tüm Hakları Saklıdır",
                             Url = new Uri("https://yazilim.academy/")
                         }
                     });
@@ -90,6 +93,7 @@ namespace MextFullstackSaaS.WebApi
             // Install Microsoft.AspNetCore.Authentication.JwtBearer nuget
             services.AddAuthentication(options =>
             {
+                //doğrulama olarak jwt token kullanmak istediğimize dair bilgi veriyoruz
                 options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
                 options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
             })
