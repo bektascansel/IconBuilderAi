@@ -14,6 +14,18 @@ namespace MextFullstackSaaS.WebApi
     {
         public static IServiceCollection AddWebServices(this IServiceCollection services, IConfiguration configuration)
         {
+
+            services.AddCors(options =>
+            {
+                options.AddPolicy("AllowAll",
+                    builder => builder
+                        .AllowAnyMethod()
+                        .AllowCredentials()
+                        .SetIsOriginAllowed((host) => true)
+                        .AllowAnyHeader());
+            });
+
+
             services.AddLocalization(options =>
             {
                 options.ResourcesPath = "Resources";
@@ -21,20 +33,22 @@ namespace MextFullstackSaaS.WebApi
 
             services.Configure<RequestLocalizationOptions>(options =>
             {
-                var defaultCulture=new CultureInfo("en-GB");
-                var supportedCultures = new List<CultureInfo> {
+                var defaultCulture = new CultureInfo("en-GB");
 
+                var supportedCultures = new List<CultureInfo>
+                {
                     defaultCulture,
                     new CultureInfo("tr-TR")
                 };
+
                 options.DefaultRequestCulture = new RequestCulture(defaultCulture);
 
-                options.SupportedCultures= supportedCultures;
-                options.SupportedUICultures= supportedCultures;
+                options.SupportedCultures = supportedCultures;
+
+                options.SupportedUICultures = supportedCultures;
 
                 options.ApplyCurrentCultureToResponseHeaders = true;
             });
-
 
             services.AddEndpointsApiExplorer();
 
