@@ -23,6 +23,6 @@ public class UserAuthVerifyEmailCommandHandler : IRequestHandler<UserAuthVerifyE
     {
         await _identityService.VerifyEmailAsync(request, cancellationToken);
 
-        return new ResponseDto<string>(request.Email, _localizer[CommonTranslationKeys.UserAuthVerifySuccededMessage,request.Email]);
+        return new ResponseDto<string>(request.Email, _localizer[CommonTranslationKeys.UserAuthVerifyEmailSucceededMessage, request.Email]);
     }
 }

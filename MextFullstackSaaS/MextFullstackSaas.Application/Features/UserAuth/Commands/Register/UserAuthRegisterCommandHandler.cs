@@ -35,7 +35,7 @@ namespace MextFullstackSaaS.Application.Features.UserAuth.Commands.Register
 
             await Task.WhenAll(jwtDtoTask, sendEmailTask);
 
-            return new ResponseDto<JwtDto>(await jwtDtoTask, _localizer[CommonTranslationKeys.UserAuthRegisterSuccededMessage]);
+            return new ResponseDto<JwtDto>(await jwtDtoTask, _localizer[CommonTranslationKeys.UserAuthRegisterSucceededMessage]);
         }
 
         private Task SendEmailVerificationAsync(string email, string firstName, string emailToken, CancellationToken cancellationToken)

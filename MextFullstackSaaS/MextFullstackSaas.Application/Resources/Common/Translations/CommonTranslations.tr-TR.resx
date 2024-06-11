@@ -118,15 +118,24 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="GeneralValidationExceptionMessage" xml:space="preserve">
-    <value>Bir veya daha fazla validasyon hatası oluştu.</value>
+    <value>Bir veya daha fazla validasyon hatası oluştu</value>
   </data>
   <data name="GeneralServerExceptionMessage" xml:space="preserve">
-    <value>Sunucu tarafında beklenmedik bir hata oluştu</value>
+    <value>Sunucu tarafinda beklenmedik bir hata olustu.</value>
   </data>
-  <data name="UserAuthRegisterSuccededMessage" xml:space="preserve">
+  <data name="UserAuthRegisterSucceededMessage" xml:space="preserve">
     <value>Uygulamamıza hoş geldiniz!</value>
   </data>
-  <data name="UserAuthVerifySuccededMessage" xml:space="preserve">
-    <value>{0} e-posta adresiniz başarıyla doğrulanmıştır.</value>
+  <data name="UserAuthVerifyEmailSucceededMessage" xml:space="preserve">
+    <value>{0} e-posta adresiniz basariyla dogrulanmistir.</value>
+  </data>
+  <data name="EmailVerificationButtonText" xml:space="preserve">
+    <value>E-postayı Doğrulayın</value>
+  </data>
+  <data name="EmailVerificationContent" xml:space="preserve">
+    <value>Lütfen e-posta adresinizi onaylamak için aşağıdaki butona tıklayınız</value>
+  </data>
+  <data name="EmailVerificationSubject" xml:space="preserve">
+    <value>E-Posta Dogrulama</value>
   </data>
 </root>

@@ -118,18 +118,27 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="GeneralValidationExceptionMessage" xml:space="preserve">
-    <value>One or more validation errors occurred</value>
+    <value>One or more validation errors occurred.</value>
   </data>
   <data name="GeneralServerExceptionMessage" xml:space="preserve">
-    <value>An unexpected error was occurred</value>
+    <value>An unexpected error was occurred.</value>
   </data>
-  <data name="UserAuthRegisterSuccededMessage" xml:space="preserve">
+  <data name="UserAuthRegisterSucceededMessage" xml:space="preserve">
     <value>Welcome to our application!</value>
   </data>
-  <data name="UserAuthLoginSuccededMessage" xml:space="preserve">
-    <value></value>
+  <data name="UserAuthLoginSucceededMessage" xml:space="preserve">
+    <value />
   </data>
-  <data name="UserAuthVerifySuccededMessage" xml:space="preserve">
-    <value> your {0] e-mail address verified successfully</value>
+  <data name="UserAuthVerifyEmailSucceededMessage" xml:space="preserve">
+    <value>Your {0} e-mail address verified successfully.</value>
+  </data>
+  <data name="EmailVerificationButtonText" xml:space="preserve">
+    <value>Verify Email</value>
+  </data>
+  <data name="EmailVerificationContent" xml:space="preserve">
+    <value>Kindly click the button below to confirm your email address.</value>
+  </data>
+  <data name="EmailVerificationSubject" xml:space="preserve">
+    <value>Email Verification</value>
   </data>
 </root>
