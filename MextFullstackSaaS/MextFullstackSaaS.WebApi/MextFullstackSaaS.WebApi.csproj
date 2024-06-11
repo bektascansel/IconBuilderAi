@@ -4,7 +4,7 @@
     <TargetFramework>net8.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
-    <InvariantGlobalization>true</InvariantGlobalization>
+    <InvariantGlobalization>false</InvariantGlobalization>
     <UserSecretsId>5c92bff9-7a3d-47f6-92de-48853426445e</UserSecretsId>
     <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
   </PropertyGroup>
@@ -25,5 +25,8 @@
     <ProjectReference Include="..\MextFullstackSaas.Application\MextFullstackSaaS.Application.csproj" />
     <ProjectReference Include="..\MextFullstackSaas.Infrastructure\MextFullstackSaaS.Infrastructure.csproj" />
   </ItemGroup>
+
+	
+
 
 </Project>

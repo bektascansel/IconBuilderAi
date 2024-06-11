@@ -15,4 +15,8 @@
     <ProjectReference Include="..\MextFullstackSaas.Application\MextFullstackSaaS.Application.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Styles\" />
+  </ItemGroup>
+
 </Project>

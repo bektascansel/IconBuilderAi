@@ -51,6 +51,7 @@ try
     builder.Services.AddSingleton<IRootPathService>(new RootPathManager(builder.Environment.WebRootPath));
 
     var app = builder.Build();
+    app.UseCors("AllowAll");
 
     // Configure the HTTP request pipeline.
     if (app.Environment.IsDevelopment())
