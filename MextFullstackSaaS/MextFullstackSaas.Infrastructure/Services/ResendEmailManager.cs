@@ -21,8 +21,8 @@ public class ResendEmailManager : IEmailService
         _localizer = localizer;
     }
 
-
-    private const string ApiBaseUrl = "https://localhost:7169/api/";
+    //blazor çalışma url 
+    private const string WebAppBaseUrl = "https://localhost:5262/";
 
 
 
@@ -33,7 +33,7 @@ public class ResendEmailManager : IEmailService
 
         var encodedToken = HttpUtility.UrlEncode(emailDto.Token);
 
-        var link = $"{ApiBaseUrl}UsersAuth/verify-email?email={encodedEmail}&token={encodedToken}";
+        var link = $"{WebAppBaseUrl}UsersAuth/verify-email?email={encodedEmail}&token={encodedToken}";
 
         var htmlContent =
             await File.ReadAllTextAsync($"{_rootPathService.GetRootPath()}/email-templates/userauth-template.html", cancellationToken);
@@ -55,7 +55,7 @@ public class ResendEmailManager : IEmailService
     {
         var encodedEmail = HttpUtility.UrlEncode(emailDto.Email);
         var encodedToken = HttpUtility.UrlEncode(emailDto.Token);
-        var link = $"{ApiBaseUrl}UsersAuth/forgot-password?email={encodedEmail}&token={encodedToken}";
+        var link = $"{WebAppBaseUrl}UsersAuth/forgot-password?email={encodedEmail}&token={encodedToken}";
 
         var htmlContent = $"<div><a href=\"{link}\" target=\"_blank\"><strong>Greetings<strong> 👋🏻 from .NET</a></div>";
 
