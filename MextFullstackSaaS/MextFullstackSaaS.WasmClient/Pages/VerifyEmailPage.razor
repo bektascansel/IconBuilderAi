@@ -9,7 +9,7 @@
 
 @if (isLoading)
 {
-    <Loading />
+    <Loading/>
 }
 else
 {
@@ -32,11 +32,11 @@ else
 
 @code {
     [SupplyParameterFromQuery]
-    [Parameter]
+    [Parameter] 
     public string Email { get; set; }
 
     [SupplyParameterFromQuery]
-    [Parameter]
+    [Parameter] 
     public string Token { get; set; }
 
     public bool isLoading = true;
@@ -52,21 +52,21 @@ else
             var encodedEmail = HttpUtility.UrlEncode(Email);
             var encodedToken = HttpUtility.UrlEncode(Token);
 
-            var response = await HttpClient.GetAsync($"UsersAuth/verify-email?email={encodedEmail}&token={encodedToken}");
+          var response = await HttpClient.GetAsync($"UsersAuth/verify-email?email={encodedEmail}&token={encodedToken}");
 
-            if (response.IsSuccessStatusCode)
-            {
+          if (response.IsSuccessStatusCode)
+          {
 
                 var responseDto = await response.Content.ReadFromJsonAsync<ResponseDto<string>>();
 
                 ToasterService.ShowSuccess(responseDto.Message);
 
                 isLoading = false;
-            }
-            else
-            {
-                ToasterService.ShowError($"An unexpected error occurred. {response.StatusCode}");
-            }
+          }
+          else
+          {
+              ToasterService.ShowError($"An unexpected error occurred. {response.StatusCode}");
+          }
         }
         catch (Exception e)
         {

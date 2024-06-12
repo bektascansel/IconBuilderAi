@@ -22,7 +22,7 @@ public class ResendEmailManager : IEmailService
     }
 
     //blazor çalışma url 
-    private const string WebAppBaseUrl = "https://localhost:5262/";
+    private const string WebAppBaseUrl = "https://localhost:5067/";
 
 
 
