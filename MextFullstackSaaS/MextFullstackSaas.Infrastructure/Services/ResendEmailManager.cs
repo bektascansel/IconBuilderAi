@@ -22,7 +22,7 @@ public class ResendEmailManager : IEmailService
     }
 
     //blazor çalışma url 
-    private const string WebAppBaseUrl = "https://localhost:5067/";
+    private const string WebAppBaseUrl = "http://localhost:5067/";
 
 
 
@@ -33,7 +33,7 @@ public class ResendEmailManager : IEmailService
 
         var encodedToken = HttpUtility.UrlEncode(emailDto.Token);
 
-        var link = $"{WebAppBaseUrl}UsersAuth/verify-email?email={encodedEmail}&token={encodedToken}";
+        var link = $"{WebAppBaseUrl}verify-email?email={encodedEmail}&token={encodedToken}";
 
         var htmlContent =
             await File.ReadAllTextAsync($"{_rootPathService.GetRootPath()}/email-templates/userauth-template.html", cancellationToken);

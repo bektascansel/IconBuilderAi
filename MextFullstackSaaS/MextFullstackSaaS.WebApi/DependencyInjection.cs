@@ -19,6 +19,7 @@ namespace MextFullstackSaaS.WebApi
             {
                 options.AddPolicy("AllowAll",
                     builder => builder
+                         //.AllowAnyOrigin()
                         .AllowAnyMethod()
                         .AllowCredentials()
                         .SetIsOriginAllowed((host) => true)
