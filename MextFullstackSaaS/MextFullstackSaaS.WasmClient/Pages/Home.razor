@@ -1,10 +1,6 @@
 ﻿@page "/"
-@using Blazored.LocalStorage
-@using MextFullstackSaaS.WasmClient.Services
-@using Microsoft.AspNetCore.Components.Authorization
-@inject IToasterService ToasterService
-@inject ILocalStorageService LocalStorage
-@inject AuthenticationStateProvider AuthStateProvider
+
+
 
 <PageTitle>Home</PageTitle>
 
@@ -12,27 +8,8 @@
 
 Welcome to your new app.
 
-<AuthorizeView>
 
-    <Authorized>
-        <p>You are signed in!</p>
-        <button class="btn btn-primary" @onclick="Logout">Logout</button>
-    </Authorized>
-    <NotAuthorized>
-        <p> you are not signed in</p>
-        <button class="btn btn-primary">LogIn</button>
-    </NotAuthorized>
-
-</AuthorizeView>
-
-@code{
-
-    private async Task Logout(){
-
-        await LocalStorage.RemoveItemAsync("cto");
-
-        await AuthStateProvider.GetAuthenticationStateAsync();
-
-        ToasterService.ShowSuccess("you have been logged out");
-    }
+@code
+{
+   
 }

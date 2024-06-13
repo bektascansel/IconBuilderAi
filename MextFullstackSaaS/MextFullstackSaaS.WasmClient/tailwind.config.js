@@ -1,10 +1,15 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: ['./**/*.{razor,html,cshtml}'],
-  theme: {
-    extend: {},
-  },
-  plugins: [
+    content: ['./**/*.{razor,html,cshtml}'],
+    theme: {
+        extend: {
+            fontFamily: {
+                poppins: ['Poppins', 'sans-serif'],
+                // You can add other font families if needed
+            },
+        },
+    },
+    plugins: [
         require('daisyui'),
     ],
     daisyui: {
@@ -12,8 +17,7 @@ module.exports = {
             "dark",
             "black",
             "night",
-            "sunset",
+            "sunset"
         ],
     },
 }
-
