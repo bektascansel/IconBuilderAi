@@ -1,4 +1,5 @@
-﻿@page "/generate"
+﻿
+@page "/generate"
 @using MextFullstackSaaS.Application.Features.Orders.Commands.Add
 
 <div class="flex min-h-screen items-center justify-center text-white">
@@ -60,3 +61,8 @@
 
         </EditForm>
     </div>
+</div>
+
+@code {
+    private OrderAddCommand command = new OrderAddCommand();
+}
