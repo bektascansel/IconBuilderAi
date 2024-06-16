@@ -29,7 +29,7 @@ namespace MextFullstackSaaS.Application.Features.UserAuth.Commands.Password.Rese
             await _emailService.SendPasswordChangedNotificationAsync(request.Email,cancellationToken);
 
           
-            return new ResponseDto<bool>(true, "Password reset");
+            return new ResponseDto<bool>(true, "Password reseted successfully");
             
             
         }

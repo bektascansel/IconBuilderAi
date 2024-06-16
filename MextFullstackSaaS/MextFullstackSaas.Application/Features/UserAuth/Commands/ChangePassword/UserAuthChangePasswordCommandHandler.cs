@@ -24,7 +24,7 @@ namespace MextFullstackSaaS.Application.Features.UserAuth.Commands.ChangePasswor
         {
             await _identityService.ChangePasswordAsync(_currentUserService.UserId,request.CurrentPassword,request.NewPassword,cancellationToken);
             
-            return new ResponseDto<bool>(true, "Password reset");
+            return new ResponseDto<bool>(true, "Password changed successfully");
         }
 
     }
