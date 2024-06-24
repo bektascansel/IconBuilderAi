@@ -11,6 +11,7 @@ namespace MextFullstackSaaS.Domain.Enums
         Square=1,
         Circle=2,
         Triangle=3,
+
         
     }
 }

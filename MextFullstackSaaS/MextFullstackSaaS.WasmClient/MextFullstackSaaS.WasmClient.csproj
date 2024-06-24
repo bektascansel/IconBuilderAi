@@ -22,4 +22,9 @@
     <Folder Include="Styles\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Include="wwwroot\images\DesignType\.DS_Store" />
+    <None Include="wwwroot\images\ModelType\.DS_Store" />
+  </ItemGroup>
+
 </Project>
