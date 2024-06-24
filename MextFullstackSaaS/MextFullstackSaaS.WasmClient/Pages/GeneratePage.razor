@@ -1,11 +1,11 @@
 ﻿@page "/generate"
 
-@using MextFullstackSaaS.Application.Common.Interfaces
 @using MextFullstackSaaS.Application.Common.Models
 @using MextFullstackSaaS.Application.Features.Orders.Commands.Add
 @using MextFullstackSaaS.Domain.Common
 @using MextFullstackSaaS.Domain.Enums
 @using MextFullstackSaaS.WasmClient.Services
+@using Microsoft.EntityFrameworkCore.Metadata.Internal
 @inject HttpClient HttpClient
 @inject IToasterService ToasterService
 @inject NavigationManager NavigationManager
@@ -28,7 +28,7 @@
                 <li class="my-4">Experiment with adding words, such as happy or vibrant</li>
             </ol>
         </div>
-        <EditForm Model="@command"  class="w-full md:w-[700px] flex flex-col  gap-6">
+        <EditForm Model="@command" class="w-full md:w-[700px] flex flex-col  gap-6">
             <DataAnnotationsValidator />
             <ValidationSummary class="mb-1 text-red-500" />
             @* Icon Description *@
@@ -98,7 +98,7 @@
                     <div class="flex items-center mb-4 ">
                         <label class="mr-2 text-gray-400 rounded-full">Pick a color:</label>
 
-                        <input type="color" @bind-value="@command.ColourCode" class="h-10 w-10  " />
+                        <input type="color" @bind="@command.ColourCode" class="h-10 w-10  " />
                     </div>
                 }
             </div>
@@ -153,7 +153,6 @@
                                  @onclick="() => SelectDesignType(designType)" />
                             <span class="text-sm mt-2">@designType.ToString()</span>
                         </div>
-
                     }
 
                 </div>
@@ -221,7 +220,7 @@
                                 case IconShape.Triangle:
                                     <path d="M12 6L4 18h16z" stroke-width="2" />
                                     break;
-                   
+                            
                                 default:
                                     <text>Shape not supported</text>
                                     break;
@@ -243,19 +242,19 @@
 
             <AuthorizeView>
                 <Authorized Context="authorizedContext">
-                      <div class="mt-8">
-                            <button class="btn btn-primary text-white px-4 py-2 " @onclick="@SubmitForm">
-                                Generate Icon
-                            </button>
-                      </div>
-                </Authorized >
+                    <div class="mt-8">
+                        <button class="btn btn-primary text-white px-4 py-2" @onclick="@SubmitForm">
+                            Generate Icon
+                        </button>
+                    </div>
+                </Authorized>
+
                 <NotAuthorized Context="authorizedContext">
                     <button class="btn btn-secondary text-white px-4 py-2" @onclick="NavigateToLogin">
                         Go to Login
                     </button>
                 </NotAuthorized>
             </AuthorizeView>
-
 
 
         </EditForm>
@@ -272,9 +271,9 @@
 
 @code {
 
-    [CascadingParameter]
-    private Task<AuthenticationState> authenticationStateTask { get; set; }
+    [CascadingParameter] private Task<AuthenticationState> authenticationStateTask { get; set; }
     private bool IsAuthenticated = false;
+
     protected override async Task OnInitializedAsync()
 
     {
@@ -282,10 +281,12 @@
         var authState = await authenticationStateTask;
         IsAuthenticated = authState.User.Identity.IsAuthenticated;
     }
+
     private void NavigateToLogin()
     {
         NavigationManager.NavigateTo("/login");
     }
+
     private OrderAddCommand command = new OrderAddCommand();
     private string generatedIconUrl;
     private ColorOption selectedColorOption = ColorOption.Predefined;
@@ -297,41 +298,42 @@
     private string IconDescription;
 
     private readonly string[] PredefinedColors =
-{
-"#1fb6ff", "#7e5bef", "#ff49db", "#ff7849", "#13ce66",
-"#ffc82c", "#8492a6", "#d3dce6", "#273444", "#f56565",
-"#ed64a6", "#4fd1c5", "#48bb78", "#38a169", "#f6e05e",
-"#d69e2e", "#4299e1", "#3182ce", "#2d3748", "#e53e3e",
-"#dd6b20", "#e2e8f0"
-};
+    {
+        "#1fb6ff", "#7e5bef", "#ff49db", "#ff7849", "#13ce66",
+        "#ffc82c", "#8492a6", "#d3dce6", "#273444", "#f56565",
+        "#ed64a6", "#4fd1c5", "#48bb78", "#38a169", "#f6e05e",
+        "#d69e2e", "#4299e1", "#3182ce", "#2d3748", "#e53e3e",
+        "#dd6b20", "#e2e8f0"
+    };
 
     private Dictionary<DesignType, string> DesignTypeImagePaths = new Dictionary<DesignType, string>
-{
-{ DesignType.Metallic, "/images/DesignType/metallic.png" },
-{ DesignType.Polygon, "/images/DesignType/polygon.png" },
-{ DesignType.Pixelated, "/images/DesignType/pixelated.png" },
-{ DesignType.Clay, "/images/DesignType/clay.png" },
-{ DesignType.Gradient, "/images/DesignType/gradient.png" },
-{ DesignType.Flat, "/images/DesignType/flat.png" },
-{ DesignType.Illustrated, "/images/DesignType/illustrated.png" },
-{ DesignType.Minimalistic, "/images/DesignType/minimalistic.png" },
-{ DesignType.HandDrawn, "/images/DesignType/hand-drawn.png" },
-{ DesignType.Watercolor, "/images/DesignType/watercolor.png" },
-{ DesignType.Isometric, "/images/DesignType/isometric.png" },
-{ DesignType.Neon, "/images/DesignType/neon.png" },
-{ DesignType.Cartoonish, "/images/DesignType/cartoonish.png" },
-{ DesignType.ThreeD, "/images/DesignType/3d.png" },
-{ DesignType.LineArt, "/images/DesignType/line-art.png" },
-{ DesignType.PopArt, "/images/DesignType/pop-art.png" },
-{ DesignType.Doodle, "/images/DesignType/doodle.png" },
-{ DesignType.Grunge, "/images/DesignType/grunge.png" },
-{ DesignType.Sticker, "/images/DesignType/sticker.png" },
-{ DesignType.Realistic, "/images/DesignType/realistic.png" },
-{ DesignType.Mosaic, "/images/DesignType/mosaic.png" },
-{ DesignType.Origami, "/images/DesignType/origami.png" },
-{ DesignType.Chalkboard, "/images/DesignType/chalkboard.png" },
-{ DesignType.Woodcut, "/images/DesignType/woodcut.png" }
-};
+    {
+        { DesignType.Metallic, "/images/DesignType/metallic.png" },
+        { DesignType.Polygon, "/images/DesignType/polygon.png" },
+        { DesignType.Pixelated, "/images/DesignType/pixelated.png" },
+        { DesignType.Clay, "/images/DesignType/clay.png" },
+        { DesignType.Gradient, "/images/DesignType/gradient.png" },
+        { DesignType.Flat, "/images/DesignType/flat.png" },
+        { DesignType.Illustrated, "/images/DesignType/illustrated.png" },
+        { DesignType.Minimalistic, "/images/DesignType/minimalistic.png" },
+        { DesignType.HandDrawn, "/images/DesignType/hand-drawn.png" },
+        { DesignType.Watercolor, "/images/DesignType/watercolor.png" },
+        { DesignType.Isometric, "/images/DesignType/isometric.png" },
+        { DesignType.Neon, "/images/DesignType/neon.png" },
+        { DesignType.Cartoonish, "/images/DesignType/cartoonish.png" },
+        { DesignType.ThreeD, "/images/DesignType/3d.png" },
+        { DesignType.LineArt, "/images/DesignType/line-art.png" },
+        { DesignType.PopArt, "/images/DesignType/pop-art.png" },
+        { DesignType.Doodle, "/images/DesignType/doodle.png" },
+        { DesignType.Grunge, "/images/DesignType/grunge.png" },
+        { DesignType.Sticker, "/images/DesignType/sticker.png" },
+        { DesignType.Realistic, "/images/DesignType/realistic.png" },
+        { DesignType.Mosaic, "/images/DesignType/mosaic.png" },
+        { DesignType.Origami, "/images/DesignType/origami.png" },
+        { DesignType.Chalkboard, "/images/DesignType/chalkboard.png" },
+        { DesignType.Woodcut, "/images/DesignType/woodcut.png" }
+    };
+
     private void SelectColorOption(ColorOption option)
     {
         selectedColorOption = option;
@@ -365,6 +367,7 @@
         selectedShape = shape;
         command.Shape = shape;
     }
+
     public enum ColorOption
     {
         Predefined,
@@ -378,17 +381,20 @@
     private async Task SubmitForm()
     {
         command.Quantity = 1;
+
         try
         {
             isLoading = true;
             Console.WriteLine($"IconDescription: {command.IconDescription}, ColourCode: {command.ColourCode}, DesignType: {command.DesignType}, Shape: {command.Shape}, Size: {command.Size}, Model: {command.Model}, Quantity: {command.Quantity}");
 
-
             var response = await HttpClient.PostAsJsonAsync("Orders", command);
+
             if (response.IsSuccessStatusCode)
             {
                 var responseDto = await response.Content.ReadFromJsonAsync<ResponseDto<Guid>>();
+
                 ToasterService.ShowSuccess(responseDto.Message);
+
                 isValidSubmit = true;
 
                 command = new OrderAddCommand();
@@ -397,7 +403,6 @@
             }
             else
             {
-
                 ToasterService.ShowError($"Beklenmedik bir hata olustu. Response Code:{response.StatusCode}");
             }
         }
@@ -405,13 +410,11 @@
         {
             ToasterService.ShowError(e.Message);
             isLoading = false;
-
         }
         finally
         {
             isLoading = false;
         }
-
     }
 
 
@@ -419,4 +422,5 @@
     {
         public string IconUrl { get; set; }
     }
+
 }

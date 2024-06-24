@@ -38,13 +38,12 @@ else
         try
         {
             order = await HttpClient.GetFromJsonAsync<OrderGetByIdDto>($"Orders/{OrderId}");
-
-        }catch(Exception e){
-
+        }
+        catch (Exception e)
+        {
             Console.WriteLine(e);
             throw;
         }
-   
 
         await base.OnInitializedAsync();
     }
