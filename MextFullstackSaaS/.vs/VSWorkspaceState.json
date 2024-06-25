@@ -1,0 +1,16 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\MextFullstackSaas.Application",
+    "\\MextFullstackSaas.Application\\Common",
+    "\\MextFullstackSaas.Application\\Common\\Interfaces",
+    "\\MextFullstackSaas.Infrastructure",
+    "\\MextFullstackSaas.Infrastructure\\Persistence",
+    "\\MextFullstackSaas.Infrastructure\\Persistence\\Configurations",
+    "\\MextFullstackSaaS.WebApi",
+    "\\MextFullstackSaaS.WebApi\\Controllers",
+    "\\MextFullstackSaaS.WebApi\\Filters"
+  ],
+  "SelectedNode": "\\MextFullstackSaaS.sln",
+  "PreviewInSolutionExplorer": false
+}

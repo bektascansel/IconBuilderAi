@@ -5,6 +5,7 @@ using MextFullstackSaaS.Domain.Settings;
 using MextFullstackSaaS.Infrastructure;
 using MextFullstackSaaS.WebApi;
 using MextFullstackSaaS.WebApi.Filters;
+using MextFullstackSaaS.WebApi.Hubs;
 using MextFullstackSaaS.WebApi.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Mvc;
@@ -73,6 +74,7 @@ try
     app.UseAuthorization();
 
     app.MapControllers();
+    app.MapHub<OrderHub>("/hubs/orderHub");
 
     app.Run();
 

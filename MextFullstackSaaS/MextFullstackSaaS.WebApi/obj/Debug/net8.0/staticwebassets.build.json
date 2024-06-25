@@ -1,0 +1,19 @@
+{
+  "Version": 1,
+  "Hash": "UEL5zE2Gg5OTPhezb8FijCI8DWvhI9XdSIYQF8AIWCo=",
+  "Source": "MextFullstackSaaS.WebApi",
+  "BasePath": "_content/MextFullstackSaaS.WebApi",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [
+    {
+      "Name": "MextFullstackSaaS.WebApi\\wwwroot",
+      "Source": "MextFullstackSaaS.WebApi",
+      "ContentRoot": "C:\\Users\\CANSEL BEKTAS\\Documents\\GitHub\\IconBuilderAi\\MextFullstackSaaS\\MextFullstackSaaS.WebApi\\wwwroot\\",
+      "BasePath": "_content/MextFullstackSaaS.WebApi",
+      "Pattern": "**"
+    }
+  ],
+  "Assets": []
+}

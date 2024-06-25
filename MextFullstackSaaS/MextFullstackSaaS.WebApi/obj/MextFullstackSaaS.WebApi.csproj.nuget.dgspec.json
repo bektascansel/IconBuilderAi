@@ -1,0 +1,358 @@
+{
+  "format": 1,
+  "restore": {
+    "C:\\Users\\CANSEL BEKTAS\\Documents\\GitHub\\IconBuilderAi\\MextFullstackSaaS\\MextFullstackSaaS.WebApi\\MextFullstackSaaS.WebApi.csproj": {}
+  },
+  "projects": {
+    "C:\\Users\\CANSEL BEKTAS\\Documents\\GitHub\\IconBuilderAi\\MextFullstackSaaS\\MextFullstackSaas.Application\\MextFullstackSaaS.Application.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\CANSEL BEKTAS\\Documents\\GitHub\\IconBuilderAi\\MextFullstackSaaS\\MextFullstackSaas.Application\\MextFullstackSaaS.Application.csproj",
+        "projectName": "MextFullstackSaaS.Application",
+        "projectPath": "C:\\Users\\CANSEL BEKTAS\\Documents\\GitHub\\IconBuilderAi\\MextFullstackSaaS\\MextFullstackSaas.Application\\MextFullstackSaaS.Application.csproj",
+        "packagesPath": "C:\\Users\\CANSEL BEKTAS\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\CANSEL BEKTAS\\Documents\\GitHub\\IconBuilderAi\\MextFullstackSaaS\\MextFullstackSaas.Application\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\CANSEL BEKTAS\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0": {
+            "targetAlias": "net8.0",
+            "projectReferences": {
+              "C:\\Users\\CANSEL BEKTAS\\Documents\\GitHub\\IconBuilderAi\\MextFullstackSaaS\\MextFullstackSaaS.Domain\\MextFullstackSaaS.Domain.csproj": {
+                "projectPath": "C:\\Users\\CANSEL BEKTAS\\Documents\\GitHub\\IconBuilderAi\\MextFullstackSaaS\\MextFullstackSaaS.Domain\\MextFullstackSaaS.Domain.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "dependencies": {
+            "FluentValidation.DependencyInjectionExtensions": {
+              "target": "Package",
+              "version": "[11.9.1, )"
+            },
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[8.0.4, )"
+            },
+            "Microsoft.Extensions.Localization.Abstractions": {
+              "target": "Package",
+              "version": "[8.0.6, )"
+            },
+            "System.IdentityModel.Tokens.Jwt": {
+              "target": "Package",
+              "version": "[7.5.2, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\CANSEL BEKTAS\\Documents\\GitHub\\IconBuilderAi\\MextFullstackSaaS\\MextFullstackSaaS.Domain\\MextFullstackSaaS.Domain.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\CANSEL BEKTAS\\Documents\\GitHub\\IconBuilderAi\\MextFullstackSaaS\\MextFullstackSaaS.Domain\\MextFullstackSaaS.Domain.csproj",
+        "projectName": "MextFullstackSaaS.Domain",
+        "projectPath": "C:\\Users\\CANSEL BEKTAS\\Documents\\GitHub\\IconBuilderAi\\MextFullstackSaaS\\MextFullstackSaaS.Domain\\MextFullstackSaaS.Domain.csproj",
+        "packagesPath": "C:\\Users\\CANSEL BEKTAS\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\CANSEL BEKTAS\\Documents\\GitHub\\IconBuilderAi\\MextFullstackSaaS\\MextFullstackSaaS.Domain\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\CANSEL BEKTAS\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0": {
+            "targetAlias": "net8.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "dependencies": {
+            "MediatR": {
+              "target": "Package",
+              "version": "[12.2.0, )"
+            },
+            "Microsoft.Extensions.Identity.Stores": {
+              "target": "Package",
+              "version": "[8.0.5, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\CANSEL BEKTAS\\Documents\\GitHub\\IconBuilderAi\\MextFullstackSaaS\\MextFullstackSaas.Infrastructure\\MextFullstackSaaS.Infrastructure.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\CANSEL BEKTAS\\Documents\\GitHub\\IconBuilderAi\\MextFullstackSaaS\\MextFullstackSaas.Infrastructure\\MextFullstackSaaS.Infrastructure.csproj",
+        "projectName": "MextFullstackSaaS.Infrastructure",
+        "projectPath": "C:\\Users\\CANSEL BEKTAS\\Documents\\GitHub\\IconBuilderAi\\MextFullstackSaaS\\MextFullstackSaas.Infrastructure\\MextFullstackSaaS.Infrastructure.csproj",
+        "packagesPath": "C:\\Users\\CANSEL BEKTAS\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\CANSEL BEKTAS\\Documents\\GitHub\\IconBuilderAi\\MextFullstackSaaS\\MextFullstackSaas.Infrastructure\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\CANSEL BEKTAS\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0": {
+            "targetAlias": "net8.0",
+            "projectReferences": {
+              "C:\\Users\\CANSEL BEKTAS\\Documents\\GitHub\\IconBuilderAi\\MextFullstackSaaS\\MextFullstackSaas.Application\\MextFullstackSaaS.Application.csproj": {
+                "projectPath": "C:\\Users\\CANSEL BEKTAS\\Documents\\GitHub\\IconBuilderAi\\MextFullstackSaaS\\MextFullstackSaas.Application\\MextFullstackSaaS.Application.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "dependencies": {
+            "Betalgo.OpenAI": {
+              "target": "Package",
+              "version": "[8.3.0, )"
+            },
+            "Microsoft.AspNetCore.Identity": {
+              "target": "Package",
+              "version": "[2.2.0, )"
+            },
+            "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[8.0.4, )"
+            },
+            "Microsoft.AspNetCore.Identity.UI": {
+              "target": "Package",
+              "version": "[8.0.5, )"
+            },
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[8.0.5, )"
+            },
+            "Microsoft.EntityFrameworkCore.Design": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[8.0.5, )"
+            },
+            "Microsoft.Extensions.Configuration": {
+              "target": "Package",
+              "version": "[8.0.0, )"
+            },
+            "Microsoft.Extensions.Configuration.Abstractions": {
+              "target": "Package",
+              "version": "[8.0.0, )"
+            },
+            "Microsoft.Extensions.Configuration.Binder": {
+              "target": "Package",
+              "version": "[8.0.1, )"
+            },
+            "Microsoft.Extensions.Configuration.Json": {
+              "target": "Package",
+              "version": "[8.0.0, )"
+            },
+            "Npgsql.EntityFrameworkCore.PostgreSQL": {
+              "target": "Package",
+              "version": "[8.0.4, )"
+            },
+            "Resend": {
+              "target": "Package",
+              "version": "[0.0.7, )"
+            },
+            "System.IdentityModel.Tokens.Jwt": {
+              "target": "Package",
+              "version": "[7.5.2, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\CANSEL BEKTAS\\Documents\\GitHub\\IconBuilderAi\\MextFullstackSaaS\\MextFullstackSaaS.WebApi\\MextFullstackSaaS.WebApi.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\CANSEL BEKTAS\\Documents\\GitHub\\IconBuilderAi\\MextFullstackSaaS\\MextFullstackSaaS.WebApi\\MextFullstackSaaS.WebApi.csproj",
+        "projectName": "MextFullstackSaaS.WebApi",
+        "projectPath": "C:\\Users\\CANSEL BEKTAS\\Documents\\GitHub\\IconBuilderAi\\MextFullstackSaaS\\MextFullstackSaaS.WebApi\\MextFullstackSaaS.WebApi.csproj",
+        "packagesPath": "C:\\Users\\CANSEL BEKTAS\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\CANSEL BEKTAS\\Documents\\GitHub\\IconBuilderAi\\MextFullstackSaaS\\MextFullstackSaaS.WebApi\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\CANSEL BEKTAS\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0": {
+            "targetAlias": "net8.0",
+            "projectReferences": {
+              "C:\\Users\\CANSEL BEKTAS\\Documents\\GitHub\\IconBuilderAi\\MextFullstackSaaS\\MextFullstackSaas.Application\\MextFullstackSaaS.Application.csproj": {
+                "projectPath": "C:\\Users\\CANSEL BEKTAS\\Documents\\GitHub\\IconBuilderAi\\MextFullstackSaaS\\MextFullstackSaas.Application\\MextFullstackSaaS.Application.csproj"
+              },
+              "C:\\Users\\CANSEL BEKTAS\\Documents\\GitHub\\IconBuilderAi\\MextFullstackSaaS\\MextFullstackSaas.Infrastructure\\MextFullstackSaaS.Infrastructure.csproj": {
+                "projectPath": "C:\\Users\\CANSEL BEKTAS\\Documents\\GitHub\\IconBuilderAi\\MextFullstackSaaS\\MextFullstackSaas.Infrastructure\\MextFullstackSaaS.Infrastructure.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "dependencies": {
+            "Microsoft.AspNetCore.Authentication.JwtBearer": {
+              "target": "Package",
+              "version": "[8.0.6, )"
+            },
+            "Microsoft.EntityFrameworkCore.Design": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[8.0.5, )"
+            },
+            "Microsoft.VisualStudio.Azure.Containers.Tools.Targets": {
+              "target": "Package",
+              "version": "[1.19.5, )"
+            },
+            "Serilog.AspNetCore": {
+              "target": "Package",
+              "version": "[8.0.1, )"
+            },
+            "Swashbuckle.AspNetCore": {
+              "target": "Package",
+              "version": "[6.4.0, )"
+            },
+            "System.Globalization": {
+              "target": "Package",
+              "version": "[4.3.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.AspNetCore.App": {
+              "privateAssets": "none"
+            },
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}

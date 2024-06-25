@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\buildMultiTargeting\MextFullstackSaaS.WebApi.props" />
+</Project>
