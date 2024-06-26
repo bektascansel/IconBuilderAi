@@ -29,12 +29,20 @@
       "PackagePath": "staticwebassets\\icon-192.png"
     },
     {
+      "Id": "C:\\Users\\CANSEL BEKTAS\\Documents\\GitHub\\IconBuilderAi\\MextFullstackSaaS\\MextFullstackSaaS.WasmClient\\wwwroot\\images\\DesignType\\3d.png",
+      "PackagePath": "staticwebassets\\images\\DesignType\\3d.png"
+    },
+    {
       "Id": "C:\\Users\\CANSEL BEKTAS\\Documents\\GitHub\\IconBuilderAi\\MextFullstackSaaS\\MextFullstackSaaS.WasmClient\\wwwroot\\images\\DesignType\\cartoonish.png",
       "PackagePath": "staticwebassets\\images\\DesignType\\cartoonish.png"
     },
     {
       "Id": "C:\\Users\\CANSEL BEKTAS\\Documents\\GitHub\\IconBuilderAi\\MextFullstackSaaS\\MextFullstackSaaS.WasmClient\\wwwroot\\images\\DesignType\\chalkboard.png",
       "PackagePath": "staticwebassets\\images\\DesignType\\chalkboard.png"
+    },
+    {
+      "Id": "C:\\Users\\CANSEL BEKTAS\\Documents\\GitHub\\IconBuilderAi\\MextFullstackSaaS\\MextFullstackSaaS.WasmClient\\wwwroot\\images\\DesignType\\clay.png",
+      "PackagePath": "staticwebassets\\images\\DesignType\\clay.png"
     },
     {
       "Id": "C:\\Users\\CANSEL BEKTAS\\Documents\\GitHub\\IconBuilderAi\\MextFullstackSaaS\\MextFullstackSaaS.WasmClient\\wwwroot\\images\\DesignType\\doodle.png",
@@ -57,12 +65,28 @@
       "PackagePath": "staticwebassets\\images\\DesignType\\hand-drawn.png"
     },
     {
+      "Id": "C:\\Users\\CANSEL BEKTAS\\Documents\\GitHub\\IconBuilderAi\\MextFullstackSaaS\\MextFullstackSaaS.WasmClient\\wwwroot\\images\\DesignType\\illustrated.png",
+      "PackagePath": "staticwebassets\\images\\DesignType\\illustrated.png"
+    },
+    {
       "Id": "C:\\Users\\CANSEL BEKTAS\\Documents\\GitHub\\IconBuilderAi\\MextFullstackSaaS\\MextFullstackSaaS.WasmClient\\wwwroot\\images\\DesignType\\isometric.png",
       "PackagePath": "staticwebassets\\images\\DesignType\\isometric.png"
     },
     {
       "Id": "C:\\Users\\CANSEL BEKTAS\\Documents\\GitHub\\IconBuilderAi\\MextFullstackSaaS\\MextFullstackSaaS.WasmClient\\wwwroot\\images\\DesignType\\line-art.png",
       "PackagePath": "staticwebassets\\images\\DesignType\\line-art.png"
+    },
+    {
+      "Id": "C:\\Users\\CANSEL BEKTAS\\Documents\\GitHub\\IconBuilderAi\\MextFullstackSaaS\\MextFullstackSaaS.WasmClient\\wwwroot\\images\\DesignType\\metallic.png",
+      "PackagePath": "staticwebassets\\images\\DesignType\\metallic.png"
+    },
+    {
+      "Id": "C:\\Users\\CANSEL BEKTAS\\Documents\\GitHub\\IconBuilderAi\\MextFullstackSaaS\\MextFullstackSaaS.WasmClient\\wwwroot\\images\\DesignType\\minimalistic.png",
+      "PackagePath": "staticwebassets\\images\\DesignType\\minimalistic.png"
+    },
+    {
+      "Id": "C:\\Users\\CANSEL BEKTAS\\Documents\\GitHub\\IconBuilderAi\\MextFullstackSaaS\\MextFullstackSaaS.WasmClient\\wwwroot\\images\\DesignType\\mosaic.png",
+      "PackagePath": "staticwebassets\\images\\DesignType\\mosaic.png"
     },
     {
       "Id": "C:\\Users\\CANSEL BEKTAS\\Documents\\GitHub\\IconBuilderAi\\MextFullstackSaaS\\MextFullstackSaaS.WasmClient\\wwwroot\\images\\DesignType\\neon.png",
@@ -77,6 +101,10 @@
       "PackagePath": "staticwebassets\\images\\DesignType\\pixelated.png"
     },
     {
+      "Id": "C:\\Users\\CANSEL BEKTAS\\Documents\\GitHub\\IconBuilderAi\\MextFullstackSaaS\\MextFullstackSaaS.WasmClient\\wwwroot\\images\\DesignType\\polygon.png",
+      "PackagePath": "staticwebassets\\images\\DesignType\\polygon.png"
+    },
+    {
       "Id": "C:\\Users\\CANSEL BEKTAS\\Documents\\GitHub\\IconBuilderAi\\MextFullstackSaaS\\MextFullstackSaaS.WasmClient\\wwwroot\\images\\DesignType\\pop-art.png",
       "PackagePath": "staticwebassets\\images\\DesignType\\pop-art.png"
     },
@@ -87,6 +115,10 @@
     {
       "Id": "C:\\Users\\CANSEL BEKTAS\\Documents\\GitHub\\IconBuilderAi\\MextFullstackSaaS\\MextFullstackSaaS.WasmClient\\wwwroot\\images\\DesignType\\sticker.png",
       "PackagePath": "staticwebassets\\images\\DesignType\\sticker.png"
+    },
+    {
+      "Id": "C:\\Users\\CANSEL BEKTAS\\Documents\\GitHub\\IconBuilderAi\\MextFullstackSaaS\\MextFullstackSaaS.WasmClient\\wwwroot\\images\\DesignType\\watercolor.png",
+      "PackagePath": "staticwebassets\\images\\DesignType\\watercolor.png"
     },
     {
       "Id": "C:\\Users\\CANSEL BEKTAS\\Documents\\GitHub\\IconBuilderAi\\MextFullstackSaaS\\MextFullstackSaaS.WasmClient\\wwwroot\\images\\DesignType\\woodcut.png",
