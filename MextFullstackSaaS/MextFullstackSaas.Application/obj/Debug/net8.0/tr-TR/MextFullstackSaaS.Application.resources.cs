@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("MextFullstackSaaS.Application")]
 [assembly: System.Reflection.AssemblyCopyrightAttribute(" ")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+7d21d067415586312fa43874326b5e70aba9d0f9")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b0f8c0e3febdb384d7a87c818adc2c281318ce13")]
 [assembly: System.Reflection.AssemblyProductAttribute("MextFullstackSaaS.Application")]
 [assembly: System.Reflection.AssemblyTitleAttribute("MextFullstackSaaS.Application")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

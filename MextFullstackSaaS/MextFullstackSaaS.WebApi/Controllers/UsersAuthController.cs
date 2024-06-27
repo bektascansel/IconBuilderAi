@@ -1,4 +1,7 @@
-﻿using MediatR;
+﻿using Google.Apis.Auth.OAuth2.Flows;
+using Google.Apis.Auth.OAuth2;
+using Google.Apis.Auth;
+using MediatR;
 using MextFullstackSaaS.Application.Features.UserAuth.Commands.ChangePassword;
 using MextFullstackSaaS.Application.Features.UserAuth.Commands.Login;
 using MextFullstackSaaS.Application.Features.UserAuth.Commands.Password.ForgotPassword;
@@ -42,8 +45,51 @@ namespace MextFullstackSaaS.WebApi.Controllers
         [HttpGet("signin-google-start")]
         public IActionResult GoogleSignInStart()
             => Redirect(_googleAuthorizationUrl);
-       
-           
+
+
+        [HttpGet("signin-google")]
+        public async Task<IActionResult> GoogleSignInAsync(string code, CancellationToken cancellationToken)
+        {
+            var flow = new GoogleAuthorizationCodeFlow(new GoogleAuthorizationCodeFlow.Initializer()
+            {
+                ClientSecrets = new ClientSecrets()
+                {
+                    ClientId = _googleSettings.ClientId,
+                    ClientSecret = _googleSettings.ClientSecret,
+                }
+            });
+
+            var tokenResponse = await flow.ExchangeCodeForTokenAsync(
+                userId: "user",
+                code: code,
+                redirectUri: REDIRECT_URI,
+                cancellationToken
+            );
+
+            var payload = await GoogleJsonWebSignature.ValidateAsync(tokenResponse.IdToken);
+
+            var email = payload.Email;
+            var firstName = payload.GivenName;
+            var lastName = payload.FamilyName;
+
+            //var jwtDto =
+            //    await _authenticationService.SocialLoginAsync(userEmail, firstName, lastName, cancellationToken);
+
+            //var queryParams = new Dictionary<string, string>()
+            //{
+            //    {"access_token",jwtDto.AccessToken },
+            //    {"expiry_date",jwtDto.ExpiryDate.ToBinary().ToString() },
+            //};
+
+            //var formContent = new FormUrlEncodedContent(queryParams);
+
+            //var query = await formContent.ReadAsStringAsync(cancellationToken);
+
+            //var redirectUrl = $"http://127.0.0.1:5173/social-login?{query}";
+
+            return Redirect($"http://localhost:5067/social-login?email={email}&firstName={firstName}&lastName={lastName}");
+
+        }
 
         [HttpPost("register")]
 

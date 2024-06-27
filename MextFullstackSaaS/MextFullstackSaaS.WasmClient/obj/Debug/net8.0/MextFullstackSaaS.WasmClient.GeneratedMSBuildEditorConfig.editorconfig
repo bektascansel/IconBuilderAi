@@ -82,6 +82,10 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2hvd0ljb25QYWdlLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/CANSEL BEKTAS/Documents/GitHub/IconBuilderAi/MextFullstackSaaS/MextFullstackSaaS.WasmClient/Pages/SocialLoginPage.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU29jaWFsTG9naW5QYWdlLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/CANSEL BEKTAS/Documents/GitHub/IconBuilderAi/MextFullstackSaaS/MextFullstackSaaS.WasmClient/Pages/VerifyEmailPage.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVmVyaWZ5RW1haWxQYWdlLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
