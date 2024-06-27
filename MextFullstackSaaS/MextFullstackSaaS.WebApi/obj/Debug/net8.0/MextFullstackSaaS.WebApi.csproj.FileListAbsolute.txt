@@ -285,3 +285,10 @@ C:\Users\CANSEL BEKTAS\Documents\GitHub\IconBuilderAi\MextFullstackSaaS\MextFull
 C:\Users\CANSEL BEKTAS\Documents\GitHub\IconBuilderAi\MextFullstackSaaS\MextFullstackSaaS.WebApi\bin\Debug\net8.0\Microsoft.Extensions.Localization.Abstractions.dll
 C:\Users\CANSEL BEKTAS\Documents\GitHub\IconBuilderAi\MextFullstackSaaS\MextFullstackSaaS.WebApi\bin\Debug\net8.0\MextFullstackSaaS.WebApi.staticwebassets.runtime.json
 C:\Users\CANSEL BEKTAS\Documents\GitHub\IconBuilderAi\MextFullstackSaaS\MextFullstackSaaS.WebApi\bin\Debug\net8.0\System.Security.Permissions.dll
+C:\Users\CANSEL BEKTAS\Documents\GitHub\IconBuilderAi\MextFullstackSaaS\MextFullstackSaaS.WebApi\bin\Debug\net8.0\Google.Apis.dll
+C:\Users\CANSEL BEKTAS\Documents\GitHub\IconBuilderAi\MextFullstackSaaS\MextFullstackSaaS.WebApi\bin\Debug\net8.0\Google.Apis.Auth.dll
+C:\Users\CANSEL BEKTAS\Documents\GitHub\IconBuilderAi\MextFullstackSaaS\MextFullstackSaaS.WebApi\bin\Debug\net8.0\Google.Apis.Core.dll
+C:\Users\CANSEL BEKTAS\Documents\GitHub\IconBuilderAi\MextFullstackSaaS\MextFullstackSaaS.WebApi\bin\Debug\net8.0\Microsoft.AspNetCore.Authentication.Google.dll
+C:\Users\CANSEL BEKTAS\Documents\GitHub\IconBuilderAi\MextFullstackSaaS\MextFullstackSaaS.WebApi\bin\Debug\net8.0\Newtonsoft.Json.dll
+C:\Users\CANSEL BEKTAS\Documents\GitHub\IconBuilderAi\MextFullstackSaaS\MextFullstackSaaS.WebApi\bin\Debug\net8.0\System.Management.dll
+C:\Users\CANSEL BEKTAS\Documents\GitHub\IconBuilderAi\MextFullstackSaaS\MextFullstackSaaS.WebApi\bin\Debug\net8.0\runtimes\win\lib\net7.0\System.Management.dll

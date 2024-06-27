@@ -5,9 +5,12 @@ using MextFullstackSaaS.Application.Features.UserAuth.Commands.Password.ForgotPa
 using MextFullstackSaaS.Application.Features.UserAuth.Commands.Password.ResetPassword;
 using MextFullstackSaaS.Application.Features.UserAuth.Commands.Register;
 using MextFullstackSaaS.Application.Features.UserAuth.Commands.VerifyEmail;
+using MextFullstackSaaS.Domain.Settings;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Options;
+using static System.Net.WebRequestMethods;
 
 namespace MextFullstackSaaS.WebApi.Controllers
 {
@@ -16,13 +19,31 @@ namespace MextFullstackSaaS.WebApi.Controllers
     public class UsersAuthController : ControllerBase
     {
 
-        public readonly ISender? _mediatr;
+        private readonly ISender? _mediatr;
+        private readonly GoogleSettings _googleSettings;
+        private const string REDIRECT_URI = "https://localhost:7169/api/UsersAuth/signin-google";
+        private readonly string _googleAuthorizationUrl;
 
-        public UsersAuthController(ISender? mediatr)
+
+        public UsersAuthController(ISender? mediatr,IOptions<GoogleSettings> googleSettings)
         {
             _mediatr = mediatr;
+            _googleSettings = googleSettings.Value;
+            _googleAuthorizationUrl = $"https://accounts.google.com/o/oauth2/v2/auth?" +
+                                         $"client_id={_googleSettings.ClientId}&" +
+                                         $"response_type=code&" +
+                                         $"scope=openid%20email%20profile&" +
+                                         $"access_type=offline&" +
+                                         $"redirect_uri={REDIRECT_URI}";
         }
 
+
+
+        [HttpGet("signin-google-start")]
+        public IActionResult GoogleSignInStart()
+            => Redirect(_googleAuthorizationUrl);
+       
+           
 
         [HttpPost("register")]
 
