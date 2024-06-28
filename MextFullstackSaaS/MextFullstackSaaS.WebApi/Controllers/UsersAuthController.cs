@@ -14,6 +14,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using static System.Net.WebRequestMethods;
+using MextFullstackSaaS.Application.Features.UserAuth.Commands.SocialLogin;
 
 namespace MextFullstackSaaS.WebApi.Controllers
 {
@@ -47,7 +48,7 @@ namespace MextFullstackSaaS.WebApi.Controllers
             => Redirect(_googleAuthorizationUrl);
 
 
-        [HttpGet("signin-google")]
+        /*[HttpGet("signin-google")]
         public async Task<IActionResult> GoogleSignInAsync(string code, CancellationToken cancellationToken)
         {
             var flow = new GoogleAuthorizationCodeFlow(new GoogleAuthorizationCodeFlow.Initializer()
@@ -68,27 +69,73 @@ namespace MextFullstackSaaS.WebApi.Controllers
 
             var payload = await GoogleJsonWebSignature.ValidateAsync(tokenResponse.IdToken);
 
-            var email = payload.Email;
-            var firstName = payload.GivenName;
-            var lastName = payload.FamilyName;
+            var command = new UserAuthSocialLoginCommand(payload.Email, payload.GivenName, payload.FamilyName);
 
-            //var jwtDto =
-            //    await _authenticationService.SocialLoginAsync(userEmail, firstName, lastName, cancellationToken);
+            var responseDto = await _mediatr.Send(command, cancellationToken);
 
-            //var queryParams = new Dictionary<string, string>()
-            //{
-            //    {"access_token",jwtDto.AccessToken },
-            //    {"expiry_date",jwtDto.ExpiryDate.ToBinary().ToString() },
-            //};
+            var queryParams = new Dictionary<string, string>()
+            {
 
-            //var formContent = new FormUrlEncodedContent(queryParams);
+                {"access_token",responseDto.Data.Token },
+                {"expiry_date",responseDto.Data.Expires.ToBinary().ToString()}
 
-            //var query = await formContent.ReadAsStringAsync(cancellationToken);
+            };
+
+          
+            var formContent = new FormUrlEncodedContent(queryParams);
+
+            var query = await formContent.ReadAsStringAsync(cancellationToken);
 
             //var redirectUrl = $"http://127.0.0.1:5173/social-login?{query}";
 
             return Redirect($"http://localhost:5067/social-login?email={email}&firstName={firstName}&lastName={lastName}");
 
+        }*/
+
+
+        [HttpGet("signin-google-start")]
+        public IActionResult SignInGoogleStart()
+      => Redirect(_googleAuthorizationUrl);
+
+        [HttpGet("signin-google")]
+        public async Task<IActionResult> SignInGoogleAsync(string code, CancellationToken cancellationToken)
+        {
+            var flow = new GoogleAuthorizationCodeFlow(new GoogleAuthorizationCodeFlow.Initializer()
+            {
+                ClientSecrets = new ClientSecrets()
+                {
+                    ClientId = _googleSettings.ClientId,
+                    ClientSecret = _googleSettings.ClientSecret,
+                }
+            });
+
+            var tokenResponse = await flow.ExchangeCodeForTokenAsync(
+                userId: "user",
+                code: code,
+                redirectUri: REDIRECT_URI,
+                cancellationToken
+            );
+
+            var payload = await GoogleJsonWebSignature.ValidateAsync(tokenResponse.IdToken);
+            var command = new UserAuthSocialLoginCommand(payload.Email, payload.GivenName, payload.FamilyName);
+
+
+            var responseDto = await _mediatr.Send(command, cancellationToken);
+
+
+            var queryParams = new Dictionary<string, string>()
+         {
+             {"access_token",responseDto.Data.Token },
+             {"expiry_date",responseDto.Data.Expires.ToBinary().ToString() },
+         };
+
+            var formContent = new FormUrlEncodedContent(queryParams);
+
+            var query = await formContent.ReadAsStringAsync(cancellationToken);
+
+            var redirectUrl = $"http://localhost:5262/social-login?{query}";
+
+            return Redirect(redirectUrl);
         }
 
         [HttpPost("register")]
