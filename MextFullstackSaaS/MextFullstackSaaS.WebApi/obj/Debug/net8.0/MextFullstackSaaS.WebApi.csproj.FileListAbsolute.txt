@@ -259,7 +259,6 @@ C:\Users\CANSEL BEKTAS\Documents\GitHub\IconBuilderAi\MextFullstackSaaS\MextFull
 C:\Users\CANSEL BEKTAS\Documents\GitHub\IconBuilderAi\MextFullstackSaaS\MextFullstackSaaS.WebApi\obj\Debug\net8.0\MextFullstackSaaS.WebApi.AssemblyInfoInputs.cache
 C:\Users\CANSEL BEKTAS\Documents\GitHub\IconBuilderAi\MextFullstackSaaS\MextFullstackSaaS.WebApi\obj\Debug\net8.0\MextFullstackSaaS.WebApi.AssemblyInfo.cs
 C:\Users\CANSEL BEKTAS\Documents\GitHub\IconBuilderAi\MextFullstackSaaS\MextFullstackSaaS.WebApi\obj\Debug\net8.0\MextFullstackSaaS.WebApi.csproj.CoreCompileInputs.cache
-C:\Users\CANSEL BEKTAS\Documents\GitHub\IconBuilderAi\MextFullstackSaaS\MextFullstackSaaS.WebApi\obj\Debug\net8.0\MextFullstackSaaS.WebApi.MvcApplicationPartsAssemblyInfo.cs
 C:\Users\CANSEL BEKTAS\Documents\GitHub\IconBuilderAi\MextFullstackSaaS\MextFullstackSaaS.WebApi\obj\Debug\net8.0\MextFullstackSaaS.WebApi.MvcApplicationPartsAssemblyInfo.cache
 C:\Users\CANSEL BEKTAS\Documents\GitHub\IconBuilderAi\MextFullstackSaaS\MextFullstackSaaS.WebApi\obj\Debug\net8.0\MextFullstackSaaS.WebApi.sourcelink.json
 C:\Users\CANSEL BEKTAS\Documents\GitHub\IconBuilderAi\MextFullstackSaaS\MextFullstackSaaS.WebApi\obj\Debug\net8.0\staticwebassets.build.json

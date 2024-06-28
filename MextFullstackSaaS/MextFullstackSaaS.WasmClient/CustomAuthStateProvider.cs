@@ -24,21 +24,28 @@ namespace MextFullstackSaaS.WasmClient
 
             if (jwtDto is not null)
             {
-                var claims = JwtHelper
-                    .ReadClaimsFromToken(jwtDto.Token)
-                    .Append(new Claim("Token", jwtDto.Token));
-                  
-                var identity = new ClaimsIdentity(claims, "jwt");
+                if (jwtDto.Expires < DateTime.UtcNow)
+                {
+                    await _localStorageService.RemoveItemAsync("cto");
+                }
+                else
+                {
+                    var claims = JwtHelper
+                        .ReadClaimsFromToken(jwtDto.Token)
+                        .Append(new Claim("Token", jwtDto.Token));
 
-                var user = new ClaimsPrincipal(identity);
+                    var identity = new ClaimsIdentity(claims, "jwt");
 
-                var state = new AuthenticationState(user);
+                    var user = new ClaimsPrincipal(identity);
 
-                _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", jwtDto.Token);
+                    var state = new AuthenticationState(user);
 
-                NotifyAuthenticationStateChanged(Task.FromResult(state));
+                    _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", jwtDto.Token);
 
-                return state;
+                    NotifyAuthenticationStateChanged(Task.FromResult(state));
+
+                    return state;
+                }
             }
 
             _httpClient.DefaultRequestHeaders.Authorization = null;

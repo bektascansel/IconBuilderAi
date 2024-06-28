@@ -1,11 +1,11 @@
 ﻿@page "/generate"
 
-@using MextFullstackSaaS.Application.Common.Interfaces
 @using MextFullstackSaaS.Application.Common.Models
 @using MextFullstackSaaS.Application.Features.Orders.Commands.Add
 @using MextFullstackSaaS.Domain.Common
 @using MextFullstackSaaS.Domain.Enums
 @using MextFullstackSaaS.WasmClient.Services
+@using Microsoft.EntityFrameworkCore.Metadata.Internal
 @inject HttpClient HttpClient
 @inject IToasterService ToasterService
 @inject NavigationManager NavigationManager
@@ -28,243 +28,243 @@
                 <li class="my-4">Experiment with adding words, such as happy or vibrant</li>
             </ol>
         </div>
-        <EditForm Model="@command" class="w-full md:w-[700px] flex flex-col  gap-6">
-            <DataAnnotationsValidator />
-            <ValidationSummary class="mb-1 text-red-500" />
-            @* Icon Description *@
-            <div class=" text-left  flex flex-col gap-4">
-                <label class="mb-2 block  text-lg" for="iconDescription">
-                    1. Describe your icon using a noun and an adjective
-                </label>
-                <InputText class="w-full rounded-lg border border-blue-500 bg-gray-800 p-2 text-white" type="text"
-                           id="iconDescription" placeholder="an angry chicken" @bind-Value="command.IconDescription" />
-            </div>
-            @* Icon Color Selection *@
-            <div class=" w-full  flex flex-col gap-4">
-                <label class="mb-4 block text-lg  text-white" for="colorSelection">
-                    2. Select a primary color for your icon
-                </label>
-                <div class=" w-full">
-                    <div class=" flex space-x-4 flex-wrap ">
-                        <button @onclick="() => SelectColorOption(ColorOption.Predefined)"
-                                class="border-b-2 pb-2 text-gray-200 hover:border-white"
-                                style="opacity: @(selectedColorOption == ColorOption.Predefined ? "1" : "0.5")">
-                            Predefined
-                        </button>
-                        <button @onclick="() => SelectColorOption(ColorOption.Picker)"
-                                class="border-b-2 pb-2 text-gray-200 hover:border-white"
-                                style="opacity: @(selectedColorOption == ColorOption.Picker ? "1" : "0.5")">
-                            Picker
-                        </button>
-                        <button @onclick="() => SelectColorOption(ColorOption.Custom)"
-                                class="border-b-2 pb-2 text-gray-200 hover:border-white"
-                                style="opacity: @(selectedColorOption == ColorOption.Custom ? "1" : "0.5")">
-                            Custom
-                        </button>
-                    </div>
+        @if (isLoading)
+        {
+            <Loading />
+        }
+        else
+        {
+            <EditForm Model="@command" class="w-full md:w-[700px] flex flex-col  gap-6">
+                <DataAnnotationsValidator />
+                <ValidationSummary class="mb-1 text-red-500" />
+                @* Icon Description *@
+                <div class=" text-left  flex flex-col gap-4">
+                    <label class="mb-2 block  text-lg" for="iconDescription">
+                        1. Describe your icon using a noun and an adjective
+                    </label>
+                    <InputText class="w-full rounded-lg border border-blue-500 bg-gray-800 p-2 text-white" type="text"
+                               id="iconDescription" placeholder="an angry chicken" @bind-Value="command.IconDescription" />
                 </div>
+                @* Icon Color Selection *@
+                <div class=" w-full  flex flex-col gap-4">
+                    <label class="mb-4 block text-lg  text-white" for="colorSelection">
+                        2. Select a primary color for your icon
+                    </label>
+                    <div class=" w-full">
+                        <div class=" flex space-x-4 flex-wrap ">
+                            <button @onclick="() => SelectColorOption(ColorOption.Predefined)"
+                                    class="border-b-2 pb-2 text-gray-200 hover:border-white"
+                                    style="opacity: @(selectedColorOption == ColorOption.Predefined ? "1" : "0.5")">
+                                Predefined
+                            </button>
+                            <button @onclick="() => SelectColorOption(ColorOption.Picker)"
+                                    class="border-b-2 pb-2 text-gray-200 hover:border-white"
+                                    style="opacity: @(selectedColorOption == ColorOption.Picker ? "1" : "0.5")">
+                                Picker
+                            </button>
+                            <button @onclick="() => SelectColorOption(ColorOption.Custom)"
+                                    class="border-b-2 pb-2 text-gray-200 hover:border-white"
+                                    style="opacity: @(selectedColorOption == ColorOption.Custom ? "1" : "0.5")">
+                                Custom
+                            </button>
+                        </div>
+                    </div>
 
 
-                @if (selectedColorOption == ColorOption.Predefined)
-                {
-                    <div class="flex flex-wrap gap-4 mb-4">
-                        @foreach (var color in PredefinedColors)
+                    @if (selectedColorOption == ColorOption.Predefined)
+                    {
+                        <div class="flex flex-wrap gap-4 mb-4">
+                            @foreach (var color in PredefinedColors)
+                            {
+                                <div class="h-12 w-12 cursor-pointer rounded-lg mb-2"
+                                     style="background-color: @color; opacity: @(SelectedColor == color ? "1" : "0.5")"
+                                     @onclick="() => SelectColor(color)">
+                                </div>
+                            }
+                        </div>
+                    }
+                    else if (selectedColorOption == ColorOption.Custom)
+                    {
+                        <div class="flex flex-col">
+                            <label class="mb-2 block text-sm font-medium text-gray-400" for="customHexColor">
+                                Custom Hex Color
+                            </label>
+                            <div class="flex items-center gap-3">
+                                <span>#</span>
+                                <InputText class="w-[200px] rounded-lg border border-blue-500 bg-gray-800 p-2 text-white"
+                                           type="text" id="ColourCode" placeholder="A020F0" @bind-Value="@command.ColourCode" />
+
+                            </div>
+
+
+                        </div>
+                    }
+                    else if (selectedColorOption == ColorOption.Picker)
+                    {
+                        <div class="flex items-center mb-4 ">
+                            <label class="mr-2 text-gray-400 rounded-full">Pick a color:</label>
+
+                            <input type="color" @bind="@command.ColourCode" class="h-10 w-10  " />
+                        </div>
+                    }
+                </div>
+                @* AI Model Typle *@
+                <div class=" w-full  flex flex-col gap-6">
+                    <label class="mb-2 block text-lg" for="modelType">
+                        3. Model type
+                    </label>
+                    <div class="flex flex-row gap-16">
+
+                        <!-- Model Selection DallE2 -->
+                        <div class="flex flex-col items-center text-center gap-4 transition-transform duration-200 ease-in-out"
+                             style="transform: scale(@(command.Model == AIModelType.DallE2 ? "1.25" : "1"));">
+                            <img src="/images/ModelType/DallE2.png" alt="Model Type 1"
+                                 class="cursor-pointer rounded-lg h-24 w-24"
+                                 @onclick="() => command.Model = AIModelType.DallE2" />
+                            <div class="flex flex-col">
+                                <span class="text-md mt-1">DallE 2</span>
+                                <span class="text-md">(2 credits)</span>
+                            </div>
+                        </div>
+
+                        <!-- Model Selection DallE3 -->
+                        <div class="flex flex-col items-center text-center gap-4 transition-transform duration-200 ease-in-out"
+                             style="transform: scale(@(command.Model == AIModelType.DallE3 ? "1.25" : "1"));">
+                            <img src="/images/ModelType/DallE3.png" alt="Model Type 2"
+                                 class="cursor-pointer rounded-lg h-24 w-24"
+                                 @onclick="() => command.Model = AIModelType.DallE3" />
+                            <div class="flex flex-col">
+                                <span class="text-md mt-1">DallE 3</span>
+                                <span class="text-md">(2 credits)</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Hidden input to bind the selected value -->
+
+
+                </div>
+                @* Icon Style *@
+                <div class="w-full text-left flex flex-col gap-4">
+                    <label class="mb-2 block text-lg" for="modelType">
+                        4. Select a style for your icon
+                    </label>
+                    <div class="flex flex-wrap gap-10">
+                        @foreach (var designType in Enum.GetValues(typeof(DesignType)).Cast<DesignType>())
                         {
-                            <div class="h-12 w-12 cursor-pointer rounded-lg mb-2"
-                                 style="background-color: @color; opacity: @(SelectedColor == color ? "1" : "0.5")"
-                                 @onclick="() => SelectColor(color)">
+                            <div class="flex flex-col items-center justify-center gap-4">
+                                <img src="@DesignTypeImagePaths[designType]" alt="@designType"
+                                     class="cursor-pointer rounded-lg transition-transform duration-200 ease-in-out h-24 w-24" style="transform: scale(@(selectedDesignType == designType ? "1.25" : "1"));
+                            opacity: @(selectedDesignType == designType ? "1" : "0.5");"
+                                     @onclick="() => SelectDesignType(designType)" />
+                                <span class="text-sm mt-2">@designType.ToString()</span>
+                            </div>
+                        }
+
+                    </div>
+
+                </div>
+                @* IconSize *@
+                <div class="w-full text-left flex flex-col gap-4">
+                    <label class="mb-2 block text-lg" for="modelType">
+                        5. Select a size for your icon
+                    </label>
+                    <div class="flex flex-wrap gap-10">
+                        @foreach (IconSize iconSize in Enum.GetValues(typeof(IconSize)))
+                        {
+                            <div class="flex flex-col items-center text-center gap-4">
+                                <div class="cursor-pointer rounded-lg h-24 w-24 bg-gray-800 flex justify-center items-center text-white transition-transform duration-200 ease-in-out  "
+                                     style='@($"transform: scale({(selectedIconSize == iconSize ? "1.25" : "1")}); opacity: {(selectedIconSize == iconSize ? "1" : "0.5")};")'
+                                     @onclick="() => SelectIconSize(iconSize)">
+                                    @if (iconSize == IconSize.Small)
+                                    {
+                                        <div class="text-xs mt-1  "
+                                             style='@($"transform: scale({(selectedIconSize == iconSize ? "1.25" : "1")}); opacity: {(selectedIconSize == iconSize ? "1" : "0.5")};")'>
+                                            Small (256x256)
+                                        </div>
+                                    }
+                                    else if (iconSize == IconSize.Medium)
+                                    {
+                                        <span class="text-xs mt-1"
+                                              style='@($"transform: scale({(selectedIconSize == iconSize ? "1.25" : "1")}); opacity: {(selectedIconSize == iconSize ?"1" : "0.5")};")'>
+                                            Medium (512x512)
+                                        </span>
+                                    }
+                                    else if (iconSize == IconSize.Large)
+                                    {
+                                        <span class="text-xs mt-1 "
+                                              style='@($"transform: scale({(selectedIconSize == iconSize ? "1.25" : "1")}); opacity: {(selectedIconSize == iconSize ? "1" : "0.5")};")'>
+                                            Large (1024x1024)
+                                        </span>
+                                    }
+                                </div>
+                                <span class="text-md mt-1 "
+                                      style='@($"transform: scale({(selectedIconSize == iconSize ? "1.25" : "1")}); opacity: {(selectedIconSize == iconSize ? "1" : "0.5")};")'>
+                                    @iconSize
+                                </span>
                             </div>
                         }
                     </div>
-                }
-                else if (selectedColorOption == ColorOption.Custom)
-                {
-                    <div class="flex flex-col">
-                        <label class="mb-2 block text-sm font-medium text-gray-400" for="customHexColor">
-                            Custom Hex Color
-                        </label>
-                        <div class="flex items-center gap-3">
-                            <span>#</span>
-                            <InputText class="w-[200px] rounded-lg border border-blue-500 bg-gray-800 p-2 text-white"
-                                       type="text" id="ColourCode" placeholder="A020F0" @bind-Value="@command.ColourCode" />
 
-                        </div>
-
-
-                    </div>
-                }
-                else if (selectedColorOption == ColorOption.Picker)
-                {
-                    <div class="flex items-center mb-4 ">
-                        <label class="mr-2 text-gray-400 rounded-full">Pick a color:</label>
-
-                        <input type="color" @bind="@command.ColourCode" class="h-10 w-10  " />
-                    </div>
-                }
-            </div>
-            @* AI Model Typle *@
-            <div class=" w-full  flex flex-col gap-6">
-                <label class="mb-2 block text-lg" for="modelType">
-                    3. Model type
-                </label>
-                <div class="flex flex-row gap-16">
-
-                    <!-- Model Selection DallE2 -->
-                    <div class="flex flex-col items-center text-center gap-4 transition-transform duration-200 ease-in-out">
-
-                        <div>
-                            <img src="/images/ModelType/DallE2.png" alt="Model Type 1"
-                                 class="cursor-pointer rounded-lg h-24 w-24" style="transform: scale(@(command.Model == AIModelType.DallE2 ? "1.25" :"1"));"
-                                 @onclick="() => command.Model = AIModelType.DallE2" />
-                        </div>
-                        <div class="flex flex-col">
-                            <span class="text-md mt-1">DallE 2</span>
-                            <span class="text-md">(2 credits)</span>
-                        </div>
-                    </div>
-
-                    <!-- Model Selection DallE3 -->
-                    <div class="flex flex-col items-center text-center gap-4 transition-transform duration-200 ease-in-out"
-                         style="transform: scale(@(command.Model == AIModelType.DallE3 ? "1.25" : "1"));">
-                        <img src="/images/ModelType/DallE3.png" alt="Model Type 2"
-                             class="cursor-pointer rounded-lg h-24 w-24"
-                             @onclick="() => command.Model = AIModelType.DallE3" />
-                        <div class="flex flex-col">
-                            <span class="text-md mt-1">DallE 3</span>
-                            <span class="text-md">(2 credits)</span>
-                        </div>
-                    </div>
                 </div>
-
-                <!-- Hidden input to bind the selected value -->
-
-
-            </div>
-            @* Icon Style *@
-            <div class="w-full text-left flex flex-col gap-4">
-                <label class="mb-2 block text-lg" for="modelType">
-                    4. Select a style for your icon
-                </label>
-                <div class="flex flex-wrap gap-10">
-                    @foreach (var designType in Enum.GetValues(typeof(DesignType)).Cast<DesignType>())
+                @* Icon Shape *@
+                <div class="flex flex-wrap gap-4">
+                    @foreach (var shape in Enum.GetValues(typeof(IconShape)).Cast<IconShape>())
                     {
-                        <div class="flex flex-col items-center justify-center gap-4">
-                            <img src="@DesignTypeImagePaths[designType]" alt="@designType"
-                                 class="cursor-pointer rounded-lg transition-transform duration-200 ease-in-out h-24 w-24" style="transform: scale(@(selectedDesignType == designType ? "1.25" : "1"));
-                            opacity: @(selectedDesignType == designType ? "1" : "0.5");"
-                                 @onclick="() => SelectDesignType(designType)" />
-                            <span class="text-sm mt-2">@designType.ToString()</span>
-                        </div>
-
-                    }
-
-                </div>
-
-            </div>
-            @* IconSize *@
-            <div class="w-full text-left flex flex-col gap-4">
-                <label class="mb-2 block text-lg" for="modelType">
-                    5. Select a size for your icon
-                </label>
-                <div class="flex flex-wrap gap-10">
-                    @foreach (IconSize iconSize in Enum.GetValues(typeof(IconSize)))
-                    {
-                        <div class="flex flex-col items-center text-center gap-4">
-                            <div class="cursor-pointer rounded-lg h-24 w-24 bg-gray-800 flex justify-center items-center text-white transition-transform duration-200 ease-in-out  "
-                                 style='@($"transform: scale({(selectedIconSize == iconSize ? "1.25" : "1")}); opacity: {(selectedIconSize == iconSize ?" 1" : "0.5")};")'
-                                 @onclick="() => SelectIconSize(iconSize)">
-                                @if (iconSize == IconSize.Small)
+                        <button @onclick="() => SelectShape(shape)"
+                                class="p-2 rounded-lg border border-gray-500 hover:border-gray-200 focus:outline-none">
+                            <svg class="h-24 w-24 text-gray-200" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                                 style='@($"transform: scale({(selectedShape == shape ?" 1.10" : "1")}); opacity: {(selectedShape == shape ? "1" : "0.5")};")'>
+                                @switch (shape)
                                 {
-                                    <div class="text-xs mt-1  "
-                                         style='@($"transform: scale({(selectedIconSize == iconSize ? "1.25" : "1")}); opacity: {(selectedIconSize == iconSize ? "1" : "0.5")};")'>
-                                        Small (256x256)
-                                    </div>
+                                    case IconShape.Square:
+                                        <rect width="18" height="18" x="3" y="3" stroke-width="2" rx="2" />
+                                        break;
+                                    case IconShape.Circle:
+                                        <circle cx="12" cy="12" r="10" stroke-width="2" />
+                                        break;
+                                    case IconShape.Triangle:
+                                        <path d="M12 6L4 18h16z" stroke-width="2" />
+                                        break;
+                                  
+                                    default:
+                                        <text>Shape not supported</text>
+                                        break;
                                 }
-                                else if (iconSize == IconSize.Medium)
-                                {
-                                    <span class="text-xs mt-1"
-                                          style='@($"transform: scale({(selectedIconSize == iconSize ? "1.25" : "1")}); opacity: {(selectedIconSize == iconSize ? "1" : "0.5")};")'>
-                                        Medium (512x512)
-                                    </span>
-                                }
-                                else if (iconSize == IconSize.Large)
-                                {
-                                    <span class="text-xs mt-1 "
-                                          style='@($"transform: scale({(selectedIconSize == iconSize ? "1.25" : "1")}); opacity: {(selectedIconSize == iconSize ?" 1" : "0.5")};")'>
-                                        Large (1024x1024)
-                                    </span>
-                                }
-                            </div>
-                            <span class="text-md mt-1 "
-                                  style='@($"transform: scale({(selectedIconSize == iconSize ?" 1.25" : "1")}); opacity: {(selectedIconSize == iconSize ? "1" : "0.5")};")'>
-                                @iconSize
-                            </span>
-                        </div>
-                    }
-                </div>
-
-            </div>
-            @* Icon Shape *@
-            <div class="flex flex-wrap gap-4">
-                @foreach (var shape in Enum.GetValues(typeof(IconShape)).Cast<IconShape>())
-                {
-                    <button @onclick="() => SelectShape(shape)"
-                            class="p-2 rounded-lg border border-gray-500 hover:border-gray-200 focus:outline-none">
-                        <svg class="h-24 w-24 text-gray-200" fill="none" viewBox="0 0 24 24" stroke="currentColor"
-                             style='@($"transform: scale({(selectedShape == shape ? "1.10" : "1")}); opacity: {(selectedShape == shape ? "1" : "0.5")};")'>
-                            @switch (shape)
-                            {
-                                case IconShape.Square:
-                                    <rect width="18" height="18" x="3" y="3" stroke-width="2" rx="2" />
-                                    break;
-                                case IconShape.Circle:
-                                    <circle cx="12" cy="12" r="10" stroke-width="2" />
-                                    break;
-                                case IconShape.Triangle:
-                                    <path d="M12 6L4 18h16z" stroke-width="2" />
-                                    break;
-                              
-                                default:
-                                    <text>Shape not supported</text>
-                                    break;
-                            }
-                        </svg>
-                    </button>
-                }
-            </div>
-            @if (command.Model == AIModelType.DallE2)
-            {
-                <div class="w-full text-left flex flex-col gap-4">
-                    <label class="mb-2 block text-lg" for="iconQuantity">
-                        7. How many images do you want (1 credit per image)?
-                    </label>
-                    <InputNumber class="w-full rounded-lg border border-blue-500 bg-gray-800 p-2 text-white" type="number"
-                                 id="iconQuantity" placeholder="Enter quantity" @bind-Value="@command.Quantity" />
-                </div>
-            }
-
-
-            <AuthorizeView>
-                <Authorized Context="authorizedContext">
-                    <div class="mt-8">
-                        <button class="btn btn-primary text-white px-4 py-2  " onclick="@SubmitForm">
-                            Generate Icon
+                            </svg>
                         </button>
+                    }
+                </div>
+                @if (command.Model == AIModelType.DallE2)
+                {
+                    <div class="w-full text-left flex flex-col gap-4">
+                        <label class="mb-2 block text-lg" for="iconQuantity">
+                            7. How many images do you want (1 credit per image)?
+                        </label>
+                        <InputNumber class="w-full rounded-lg border border-blue-500 bg-gray-800 p-2 text-white" type="number"
+                                     id="iconQuantity" placeholder="Enter quantity" @bind-Value="@command.Quantity" />
                     </div>
-                </Authorized>
-                <NotAuthorized Context="authorizedContext">
-                    <button class="btn btn-secondary text-white px-4 py-2" @onclick="NavigateToLogin">
-                        Go to Login
-                    </button>
-                </NotAuthorized>
-            </AuthorizeView>
+                }
+
+                <AuthorizeView>
+                    <Authorized Context="authorizedContext">
+                        <div class="mt-8">
+                            <button class="btn btn-primary text-white px-4 py-2" @onclick="@SubmitForm">
+                                Generate Icon
+                            </button>
+                        </div>
+                    </Authorized>
+
+                    <NotAuthorized Context="authorizedContext">
+                        <button class="btn btn-secondary text-white px-4 py-2" @onclick="NavigateToLogin">
+                            Go to Login
+                        </button>
+                    </NotAuthorized>
+                </AuthorizeView>
 
 
-
-
-
-
-        </EditForm>
+            </EditForm>
+        }
         @if (!string.IsNullOrEmpty(generatedIconUrl))
         {
             <div class="mt-8">
@@ -278,9 +278,9 @@
 
 @code {
 
-    [CascadingParameter]
-    private Task<AuthenticationState> authenticationStateTask { get; set; }
+    [CascadingParameter] private Task<AuthenticationState> authenticationStateTask { get; set; }
     private bool IsAuthenticated = false;
+
     protected override async Task OnInitializedAsync()
 
     {
@@ -288,10 +288,20 @@
         var authState = await authenticationStateTask;
         IsAuthenticated = authState.User.Identity.IsAuthenticated;
     }
+    private bool isDallE3ModelSelected = false;
+
+    private void HandleModelSelection(AIModelType modelType)
+    {
+        isDallE3ModelSelected = modelType == AIModelType.DallE3;
+
+        command.Model = modelType;
+    }
+
     private void NavigateToLogin()
     {
         NavigationManager.NavigateTo("/login");
     }
+
     private OrderAddCommand command = new OrderAddCommand();
     private string generatedIconUrl;
     private ColorOption selectedColorOption = ColorOption.Predefined;
@@ -304,40 +314,41 @@
 
     private readonly string[] PredefinedColors =
     {
-"#1fb6ff", "#7e5bef", "#ff49db", "#ff7849", "#13ce66",
-"#ffc82c", "#8492a6", "#d3dce6", "#273444", "#f56565",
-"#ed64a6", "#4fd1c5", "#48bb78", "#38a169", "#f6e05e",
-"#d69e2e", "#4299e1", "#3182ce", "#2d3748", "#e53e3e",
-"#dd6b20", "#e2e8f0"
-};
+        "#1fb6ff", "#7e5bef", "#ff49db", "#ff7849", "#13ce66",
+        "#ffc82c", "#8492a6", "#d3dce6", "#273444", "#f56565",
+        "#ed64a6", "#4fd1c5", "#48bb78", "#38a169", "#f6e05e",
+        "#d69e2e", "#4299e1", "#3182ce", "#2d3748", "#e53e3e",
+        "#dd6b20", "#e2e8f0"
+    };
 
     private Dictionary<DesignType, string> DesignTypeImagePaths = new Dictionary<DesignType, string>
-{
-{ DesignType.Metallic, "/images/DesignType/metallic.png" },
-{ DesignType.Polygon, "/images/DesignType/polygon.png" },
-{ DesignType.Pixelated, "/images/DesignType/pixelated.png" },
-{ DesignType.Clay, "/images/DesignType/clay.png" },
-{ DesignType.Gradient, "/images/DesignType/gradient.png" },
-{ DesignType.Flat, "/images/DesignType/flat.png" },
-{ DesignType.Illustrated, "/images/DesignType/illustrated.png" },
-{ DesignType.Minimalistic, "/images/DesignType/minimalistic.png" },
-{ DesignType.HandDrawn, "/images/DesignType/hand-drawn.png" },
-{ DesignType.Watercolor, "/images/DesignType/watercolor.png" },
-{ DesignType.Isometric, "/images/DesignType/isometric.png" },
-{ DesignType.Neon, "/images/DesignType/neon.png" },
-{ DesignType.Cartoonish, "/images/DesignType/cartoonish.png" },
-{ DesignType.ThreeD, "/images/DesignType/3d.png" },
-{ DesignType.LineArt, "/images/DesignType/line-art.png" },
-{ DesignType.PopArt, "/images/DesignType/pop-art.png" },
-{ DesignType.Doodle, "/images/DesignType/doodle.png" },
-{ DesignType.Grunge, "/images/DesignType/grunge.png" },
-{ DesignType.Sticker, "/images/DesignType/sticker.png" },
-{ DesignType.Realistic, "/images/DesignType/realistic.png" },
-{ DesignType.Mosaic, "/images/DesignType/mosaic.png" },
-{ DesignType.Origami, "/images/DesignType/origami.png" },
-{ DesignType.Chalkboard, "/images/DesignType/chalkboard.png" },
-{ DesignType.Woodcut, "/images/DesignType/woodcut.png" }
-};
+    {
+        { DesignType.Metallic, "/images/DesignType/metallic.png" },
+        { DesignType.Polygon, "/images/DesignType/polygon.png" },
+        { DesignType.Pixelated, "/images/DesignType/pixelated.png" },
+        { DesignType.Clay, "/images/DesignType/clay.png" },
+        { DesignType.Gradient, "/images/DesignType/gradient.png" },
+        { DesignType.Flat, "/images/DesignType/flat.png" },
+        { DesignType.Illustrated, "/images/DesignType/illustrated.png" },
+        { DesignType.Minimalistic, "/images/DesignType/minimalistic.png" },
+        { DesignType.HandDrawn, "/images/DesignType/hand-drawn.png" },
+        { DesignType.Watercolor, "/images/DesignType/watercolor.png" },
+        { DesignType.Isometric, "/images/DesignType/isometric.png" },
+        { DesignType.Neon, "/images/DesignType/neon.png" },
+        { DesignType.Cartoonish, "/images/DesignType/cartoonish.png" },
+        { DesignType.ThreeD, "/images/DesignType/3d.png" },
+        { DesignType.LineArt, "/images/DesignType/line-art.png" },
+        { DesignType.PopArt, "/images/DesignType/pop-art.png" },
+        { DesignType.Doodle, "/images/DesignType/doodle.png" },
+        { DesignType.Grunge, "/images/DesignType/grunge.png" },
+        { DesignType.Sticker, "/images/DesignType/sticker.png" },
+        { DesignType.Realistic, "/images/DesignType/realistic.png" },
+        { DesignType.Mosaic, "/images/DesignType/mosaic.png" },
+        { DesignType.Origami, "/images/DesignType/origami.png" },
+        { DesignType.Chalkboard, "/images/DesignType/chalkboard.png" },
+        { DesignType.Woodcut, "/images/DesignType/woodcut.png" }
+    };
+
     private void SelectColorOption(ColorOption option)
     {
         selectedColorOption = option;
@@ -371,6 +382,7 @@
         selectedShape = shape;
         command.Shape = shape;
     }
+
     public enum ColorOption
     {
         Predefined,
@@ -384,11 +396,11 @@
     private async Task SubmitForm()
     {
         command.Quantity = 1;
+
         try
         {
             isLoading = true;
             Console.WriteLine($"IconDescription: {command.IconDescription}, ColourCode: {command.ColourCode}, DesignType: {command.DesignType}, Shape: {command.Shape}, Size: {command.Size}, Model: {command.Model}, Quantity: {command.Quantity}");
-
 
             var response = await HttpClient.PostAsJsonAsync("Orders", command);
 
@@ -406,7 +418,6 @@
             }
             else
             {
-
                 ToasterService.ShowError($"Beklenmedik bir hata olustu. Response Code:{response.StatusCode}");
             }
         }
@@ -414,13 +425,11 @@
         {
             ToasterService.ShowError(e.Message);
             isLoading = false;
-
         }
         finally
         {
             isLoading = false;
         }
-
     }
 
 
@@ -428,4 +437,5 @@
     {
         public string IconUrl { get; set; }
     }
+
 }

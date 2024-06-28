@@ -43,59 +43,14 @@ namespace MextFullstackSaaS.WebApi.Controllers
 
 
 
-        [HttpGet("signin-google-start")]
-        public IActionResult GoogleSignInStart()
-            => Redirect(_googleAuthorizationUrl);
-
-
-        /*[HttpGet("signin-google")]
-        public async Task<IActionResult> GoogleSignInAsync(string code, CancellationToken cancellationToken)
-        {
-            var flow = new GoogleAuthorizationCodeFlow(new GoogleAuthorizationCodeFlow.Initializer()
-            {
-                ClientSecrets = new ClientSecrets()
-                {
-                    ClientId = _googleSettings.ClientId,
-                    ClientSecret = _googleSettings.ClientSecret,
-                }
-            });
-
-            var tokenResponse = await flow.ExchangeCodeForTokenAsync(
-                userId: "user",
-                code: code,
-                redirectUri: REDIRECT_URI,
-                cancellationToken
-            );
-
-            var payload = await GoogleJsonWebSignature.ValidateAsync(tokenResponse.IdToken);
-
-            var command = new UserAuthSocialLoginCommand(payload.Email, payload.GivenName, payload.FamilyName);
-
-            var responseDto = await _mediatr.Send(command, cancellationToken);
-
-            var queryParams = new Dictionary<string, string>()
-            {
-
-                {"access_token",responseDto.Data.Token },
-                {"expiry_date",responseDto.Data.Expires.ToBinary().ToString()}
-
-            };
-
-          
-            var formContent = new FormUrlEncodedContent(queryParams);
-
-            var query = await formContent.ReadAsStringAsync(cancellationToken);
-
-            //var redirectUrl = $"http://127.0.0.1:5173/social-login?{query}";
-
-            return Redirect($"http://localhost:5067/social-login?email={email}&firstName={firstName}&lastName={lastName}");
-
-        }*/
+ 
 
 
         [HttpGet("signin-google-start")]
         public IActionResult SignInGoogleStart()
-      => Redirect(_googleAuthorizationUrl);
+        => Redirect(_googleAuthorizationUrl);
+
+
 
         [HttpGet("signin-google")]
         public async Task<IActionResult> SignInGoogleAsync(string code, CancellationToken cancellationToken)
@@ -133,10 +88,14 @@ namespace MextFullstackSaaS.WebApi.Controllers
 
             var query = await formContent.ReadAsStringAsync(cancellationToken);
 
-            var redirectUrl = $"http://localhost:5262/social-login?{query}";
+            var redirectUrl = $"http://localhost:5067/social-login?{query}";
 
             return Redirect(redirectUrl);
         }
+
+
+        
+
 
         [HttpPost("register")]
 
@@ -145,6 +104,8 @@ namespace MextFullstackSaaS.WebApi.Controllers
             //throw new ArgumentNullException(command.FirstName, message: "First name is required");
             return Ok(await _mediatr.Send(command, cancellationToken));
         }
+
+
 
 
         [HttpPost("login")]

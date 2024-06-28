@@ -1,19 +1,23 @@
 ﻿using MediatR;
+using MextFullstackSaaS.Application.Common.Interfaces;
 using MextFullstackSaaS.Application.Common.Models;
 using MextFullstackSaaS.Domain.Common;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace MextFullstackSaaS.Application.Features.UserAuth.Commands.SocialLogin
+namespace MextFullstackSaaS.Application.Features.UserAuth.Commands.SocialLogin;
+
+public class UserAuthSocialLoginCommandHandler : IRequestHandler<UserAuthSocialLoginCommand, ResponseDto<JwtDto>>
 {
-    public class UserAuthSocialCommandHandler : IRequestHandler<UserAuthSocialLoginCommand, ResponseDto<JwtDto>>
+    private readonly IIdentityService _identityService;
+
+    public UserAuthSocialLoginCommandHandler(IIdentityService identityService)
     {
-        public Task<ResponseDto<JwtDto>> Handle(UserAuthSocialLoginCommand request, CancellationToken cancellationToken)
-        {
-            throw new NotImplementedException();
-        }
+        _identityService = identityService;
+    }
+
+    public async Task<ResponseDto<JwtDto>> Handle(UserAuthSocialLoginCommand request, CancellationToken cancellationToken)
+    {
+        var jwtDto = await _identityService.SocialLoginAsync(request, cancellationToken);
+
+        return new ResponseDto<JwtDto>(jwtDto, "Welcome back!");
     }
 }

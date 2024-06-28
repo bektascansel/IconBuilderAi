@@ -132,20 +132,23 @@ namespace MextFullstackSaaS.Infrastructure.Services
 
         }
 
-        public async Task<JwtDto> SocialLoginAsync(UserAuthSocialLoginCommand userAuthSocialLoginCommand, CancellationToken cancellationToken)
+        public async Task<JwtDto> SocialLoginAsync(UserAuthSocialLoginCommand command, CancellationToken cancellationToken)
         {
             User? user;
 
-            user = await _userManager.FindByEmailAsync(userAuthSocialLoginCommand.Email);
+            user = await _userManager.FindByEmailAsync(command.Email);
 
-            if (user == null)
+            if (user is null)
             {
+                user = UserAuthSocialLoginCommand.ToUser(command);
 
-                user = UserAuthSocialLoginCommand.ToUser(userAuthSocialLoginCommand);
+                var result = await _userManager.CreateAsync(user);
 
-                var result=await _userManager.CreateAsync(user);
+                if (!result.Succeeded)
+                    throw new Exception("User registration failed");
             }
-               
+
+            return await _jwtService.GenerateTokenAsync(user.Id, user.Email, cancellationToken);
         }
     }
 }
