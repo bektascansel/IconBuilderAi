@@ -34,7 +34,6 @@ public class OpenAIManager : IOpenAIService
                     Prompt = CreateIconPrompt(requestDto),
                     N = 1,
                     Size = GetSize(requestDto.Size),
-                    //ResponseFormat = StaticValues.ImageStatics.ResponseFormat.Url,
                     ResponseFormat = StaticValues.ImageStatics.ResponseFormat.Base64,
                     User = _currentUserService.UserId.ToString(),
                     Model = Models.Dall_e_3
@@ -56,7 +55,6 @@ public class OpenAIManager : IOpenAIService
             Prompt = CreateIconPrompt(requestDto),
             N = requestDto.Quantity,
             Size = GetSize(requestDto.Size),
-            //ResponseFormat = StaticValues.ImageStatics.ResponseFormat.Url,
             ResponseFormat = StaticValues.ImageStatics.ResponseFormat.Base64,
             User = _currentUserService.UserId.ToString(),
             Model = Models.Dall_e_3

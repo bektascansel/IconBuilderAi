@@ -37,6 +37,7 @@ namespace MextFullstackSaaS.Infrastructure.Services
 
             // Return the public URL of the uploaded image
             //return $"https://storage.googleapis.com/{BucketName}/{fileName}";
+            //return $"https://storage.googleapis.com/iconbuilderai-icons-us/{fileName}";
             return fileName;
 
 
@@ -44,15 +45,11 @@ namespace MextFullstackSaaS.Infrastructure.Services
 
         public async Task<List<string>> UploadImagesAsync(List<string> imagesData, CancellationToken cancellationToken)
         {
-            var uploadTasks = imagesData.Select(imagesData => UploadImageAsync(imagesData, cancellationToken));
+            var uploadTasks = imagesData.Select(imageData => UploadImageAsync(imageData, cancellationToken));
 
             var results = await Task.WhenAll(uploadTasks);
 
             return results.ToList();
         }
-
-
-
-
     }
 }

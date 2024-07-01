@@ -23,7 +23,7 @@ namespace MextFullstackSaaS.Application.Features.Orders.Commands.Add
 
 
 
-        public static Order MapToOrder(OrderAddCommand orderAddCommand)
+        public static Order MapToOrder(OrderAddCommand orderAddCommand, Guid userId)
         {
             return new Order
             {
@@ -35,6 +35,8 @@ namespace MextFullstackSaaS.Application.Features.Orders.Commands.Add
                 Size = orderAddCommand.Size,
                 Shape = orderAddCommand.Shape,
                 Quantity = orderAddCommand.Quantity,
+                UserId = userId,
+                CreatedByUserId = userId.ToString(),
                 CreatedOn = DateTimeOffset.UtcNow,
             };
         }
