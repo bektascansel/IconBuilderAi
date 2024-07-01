@@ -16,11 +16,28 @@ else
                     <div class="card-title flex justify-center items-center mt-2">
                         <h2 class="text-lg font-bold">@order.IconDescription</h2>
                     </div>
-                    <div class="card-body flex justify-center items-center">
-                        <img class="w-[25rem]"
-                             src="@order.Urls[0]"
-                             alt="@order.IconDescription" />
-                    </div>
+                    @if (order.Urls.Count > 1)
+                    {
+                        <div class="card-body flex items-center justify-center">
+
+                            @foreach (var url in order.Urls)
+                            {
+
+                                <img class="w-[8rem]"
+                                     src="@($"https://storage.googleapis.com/iconbuilderai-icons-us/{url}")"
+                                     alt="@order.IconDescription" />
+
+                            }
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="card-body flex items-center justify-center">
+                            <img class="w-[25rem]"
+                                 src="@($"https://storage.googleapis.com/iconbuilderai-icons-us/{order.Urls[0]}")"
+                                 alt="@order.IconDescription" />
+                        </div>
+                    }
                 </div>
             </div>
         </div>

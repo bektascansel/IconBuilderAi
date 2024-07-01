@@ -20,15 +20,17 @@ namespace MextFullstackSaaS.Application.Features.Orders.Commands.Add
         private readonly IOpenAIService _openAService;
         private readonly IMemoryCache _memoryCache;
         private readonly IOrderHubService _orderHubService;
+        private readonly IObjectStorageService _objectStorageService;
 
 
-        public OrderAddCommandHandler(IApplicationDbContext dbContext, ICurrentUserService currentUserService, IOpenAIService openAService, IMemoryCache memoryCache, IOrderHubService orderHubService)
+        public OrderAddCommandHandler(IApplicationDbContext dbContext, ICurrentUserService currentUserService, IOpenAIService openAService, IMemoryCache memoryCache, IOrderHubService orderHubService, IObjectStorageService objectStorageService)
         {
             _dbContext = dbContext;
             _currentUserService = currentUserService;
             _openAService = openAService;
             _memoryCache = memoryCache;
             _orderHubService = orderHubService;
+            _objectStorageService = objectStorageService;
         }
 
 
@@ -38,8 +40,10 @@ namespace MextFullstackSaaS.Application.Features.Orders.Commands.Add
 
             order.UserId = _currentUserService.UserId;
             order.CreatedByUserId = _currentUserService.UserId.ToString();
-            order.Urls = await _openAService.DallECreateIconAsync(DallECreateIconRequestDto.MapFromOrderAddCommand(request),cancellationToken);
+            var base64Images = await _openAService.DallECreateIconAsync(DallECreateIconRequestDto.MapFromOrderAddCommand(request),cancellationToken);
             // TODO: make request to the gemini or dall-e3
+
+            order.Urls = await _objectStorageService.UploadImagesAsync(base64Images, cancellationToken);
 
             _dbContext.Orders.Add(order);
 
