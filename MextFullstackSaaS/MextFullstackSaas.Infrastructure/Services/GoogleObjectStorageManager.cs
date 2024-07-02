@@ -13,7 +13,7 @@ namespace MextFullstackSaaS.Infrastructure.Services
 
         public GoogleObjectStorageManager()
         {
-            _credential = GoogleCredential.FromFile("C:\\Users\\alper\\Desktop\\fullstack-yt-app-d3288d4031f5.json");
+            _credential = GoogleCredential.FromFile("C:\\Users\\CANSEL BEKTAS\\Downloads\\golden-rush-428107-n0-164d12539c06.json");
         }
         public async Task<string> UploadImageAsync(string imageData, CancellationToken cancellationToken)
         {
