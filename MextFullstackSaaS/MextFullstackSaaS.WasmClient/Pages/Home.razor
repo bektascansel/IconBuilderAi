@@ -12,36 +12,49 @@
 
 <div class="relative h-screen overflow-hidden bg-black">
     <!-- Use iframe as background -->
-    <div class=" hidden xl:flex">
+    <div class="hidden xl:flex">
         <iframe src='https://my.spline.design/ticktockinteractivelanding-c74f074e54e58fda943a1207dda8826e/'
-                frameborder='0' width='100%' height='100%' class="absolute inset-0 z-0"></iframe>
+                frameborder='0' width='100%' height='100%' class="z-0 absolute inset-0"></iframe>
     </div>
-    <div class=" hidden md:flex xl:hidden ">
+    <div class="hidden md:flex xl:hidden">
         <iframe src='https://my.spline.design/ticktockinteractivelandingcopy-8daab4a059ea488e92913acccd353d0f/'
-                frameborder='0' width='100%' height='100%' class="absolute inset-0 z-0"></iframe>
+                frameborder='0' width='100%' height='100%' class="z-0 absolute inset-0"></iframe>
     </div>
-    <div class=" flex md:hidden">
+    <div class="flex md:hidden">
         <iframe src='https://my.spline.design/ticktockinteractivelandingcopycopy-627e3dc0dfb668f99f8fac642c3377c6/'
-                frameborder='0' width='100%' height='100%' class="absolute inset-0 z-0"></iframe>
+                frameborder='0' width='100%' height='100%' class="z-0 absolute inset-0"></iframe>
     </div>
 
 
     <!-- Content overlaying the iframe -->
-    <div class="fixed bottom-0 items-center left-1/2 -translate-x-1/2 z-10 mb-10">
+    <div class="-translate-x-1/2 z-10 fixed bottom-0 left-1/2 mb-10 items-center">
 
 
-        <button class="  btn btn-outline  hover:bg-gray-200 text-gray-200" size="lg">
-            <NavLink class="text-md md:text-lg " href="/register">
-                Sign Up Now!
-            </NavLink>
+        <AuthorizeView>
+            <Authorized>
+                <button class="btn btn-outline text-gray-200 hover:bg-gray-200" size="lg">
+                    <NavLink class="text-md md:text-lg" href="/generate">
+                        Generate an Icon Now!
+                    </NavLink>
 
-        </button>
+                </button>
+            </Authorized>
+            <NotAuthorized>
+                <button class="btn btn-outline text-gray-200 hover:bg-gray-200" size="lg">
+                    <NavLink class="text-md md:text-lg" href="/register">
+                        Sign Up Now!
+                    </NavLink>
+
+                </button>
+            </NotAuthorized>
+        </AuthorizeView>
 
 
 
 
     </div>
 </div>
+
 
 @code
 {
