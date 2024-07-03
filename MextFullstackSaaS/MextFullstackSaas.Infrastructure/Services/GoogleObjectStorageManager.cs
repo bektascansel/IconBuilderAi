@@ -8,12 +8,12 @@ namespace MextFullstackSaaS.Infrastructure.Services
 {
     public class GoogleObjectStorageManager : IObjectStorageService
     {
-        private const string BucketName = "iconbuilderai-icons-us";
+        private const string BucketName = "iconbuilderai-us";
         private readonly GoogleCredential _credential;
 
         public GoogleObjectStorageManager()
         {
-            _credential = GoogleCredential.FromFile("C:\\Users\\CANSEL BEKTAS\\Downloads\\golden-rush-428107-n0-164d12539c06.json");
+            _credential = GoogleCredential.FromFile("C:\\Users\\CANSEL BEKTAS\\Desktop\\golden-rush-428107-n0-bd0741ecbb23.json");
         }
         public async Task<string> UploadImageAsync(string imageData, CancellationToken cancellationToken)
         {
@@ -22,7 +22,7 @@ namespace MextFullstackSaaS.Infrastructure.Services
 
             // Create a new MemoryStream
             using var imageStream = new MemoryStream(imageBytes);
-
+             
             // Create a new Google Cloud Storage client
             using var storage = await StorageClient.CreateAsync(_credential);
 
@@ -39,7 +39,7 @@ namespace MextFullstackSaaS.Infrastructure.Services
 
             // Return the public URL of the uploaded image
             //return $"https://storage.googleapis.com/{BucketName}/{fileName}";
-            //return $"https://storage.googleapis.com/iconbuilderai-icons-us/{fileName}";
+            //return $"https://storage.googleapis.com/iconbuilderai-us/{fileName}";
             return fileName;
 
 

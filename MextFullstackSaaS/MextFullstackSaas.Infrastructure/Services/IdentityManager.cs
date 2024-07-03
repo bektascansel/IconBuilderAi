@@ -10,6 +10,7 @@ using MextFullstackSaaS.Application.Features.UserAuth.Commands.SocialLogin;
 using MextFullstackSaaS.Application.Features.UserAuth.Commands.VerifyEmail;
 using MextFullstackSaaS.Domain.Entities;
 using MextFullstackSaaS.Domain.Identity;
+using MextFullstackSaaS.Infrastructure.Persistence.Contexts;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
@@ -19,11 +20,15 @@ namespace MextFullstackSaaS.Infrastructure.Services
     {
         private readonly IJwtService _jwtService;
         private readonly UserManager<User> _userManager;
+        private readonly ICurrentUserService _currentUserService;
+        private readonly IApplicationDbContext _applicationDbContext;
 
-        public IdentityManager(UserManager<User> userManager, IJwtService jwtService)
+        public IdentityManager(UserManager<User> userManager, IJwtService jwtService, ICurrentUserService currentUserService, IApplicationDbContext applicationDbContext)
         {
             _userManager = userManager;
             _jwtService = jwtService;
+            _currentUserService = currentUserService;
+            _applicationDbContext = applicationDbContext;
         }
 
         public async Task<UserAuthRegisterResponseDto> RegisterAsync(UserAuthRegisterCommand command, CancellationToken cancellationToken)
@@ -149,6 +154,19 @@ namespace MextFullstackSaaS.Infrastructure.Services
             }
 
             return await _jwtService.GenerateTokenAsync(user.Id, user.Email, cancellationToken);
+        }
+
+        public async Task<UserGetProfileDto> GetProfileAsync(CancellationToken cancellationToken)
+        {
+            var user = await _userManager
+               .FindByIdAsync(_currentUserService.UserId.ToString());
+
+            user.Balance = await _applicationDbContext
+                .UserBalances
+                .AsNoTracking()
+                .FirstOrDefaultAsync(x => x.UserId == user.Id, cancellationToken);
+
+            return UserGetProfileDto.Map(user);
         }
     }
 }

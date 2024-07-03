@@ -9,13 +9,13 @@ using System.Threading.Tasks;
 
 namespace MextFullstackSaaS.Domain.Identity
 {
-    // AppUser / ApplicationUSer
+    // AppUser / ApplicationUser // UserManager<User> _userManager.SignInAsync()
     public class User : IdentityUser<Guid>, IEntity<Guid>, ICreatedByEntity, IModifiedByEntity
     {
         public string? FirstName { get; set; }
         public string? LastName { get; set; }
         public UserBalance Balance { get; set; }
-
+        public string? ProfileImage { get; set; }
         public DateTimeOffset CreatedOn { get; set; }
         public string CreatedByUserId { get; set; }
         public DateTimeOffset? ModifiedOn { get; set; }
