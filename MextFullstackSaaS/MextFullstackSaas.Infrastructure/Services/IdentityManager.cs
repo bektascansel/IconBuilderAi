@@ -8,6 +8,7 @@ using MextFullstackSaaS.Application.Features.UserAuth.Commands.Password.ResetPas
 using MextFullstackSaaS.Application.Features.UserAuth.Commands.Register;
 using MextFullstackSaaS.Application.Features.UserAuth.Commands.SocialLogin;
 using MextFullstackSaaS.Application.Features.UserAuth.Commands.VerifyEmail;
+using MextFullstackSaaS.Application.Features.Users.Queries.GetProfile;
 using MextFullstackSaaS.Domain.Entities;
 using MextFullstackSaaS.Domain.Identity;
 using MextFullstackSaaS.Infrastructure.Persistence.Contexts;
