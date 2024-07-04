@@ -26,6 +26,7 @@ namespace MextFullstackSaaS.Infrastructure
             services.Configure<JwtSettings>(jwtSettings => configuration.GetSection("JwtSettings").Bind(jwtSettings));
 
             services.Configure<GoogleSettings>(googleSettings => configuration.GetSection("GoogleSettings").Bind(googleSettings));
+            services.Configure<IyzicoSettings>(iyzicoSettings => configuration.GetSection("IyzicoSettings").Bind(iyzicoSettings));
 
             services.AddIdentity<User, Role>(options =>
             {
