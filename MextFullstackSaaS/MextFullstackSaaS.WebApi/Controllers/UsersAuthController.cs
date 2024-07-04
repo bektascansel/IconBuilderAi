@@ -72,7 +72,7 @@ namespace MextFullstackSaaS.WebApi.Controllers
             );
 
             var payload = await GoogleJsonWebSignature.ValidateAsync(tokenResponse.IdToken);
-            var command = new UserAuthSocialLoginCommand(payload.Email, payload.GivenName, payload.FamilyName);
+            var command = new UserAuthSocialLoginCommand(payload.Email, payload.GivenName, payload.FamilyName,payload.Picture);
 
 
             var responseDto = await _mediatr.Send(command, cancellationToken);
