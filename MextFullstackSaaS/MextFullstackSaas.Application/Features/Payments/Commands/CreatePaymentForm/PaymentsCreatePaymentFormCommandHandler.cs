@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 
 namespace MextFullstackSaaS.Application.Features.Payments.Commands.CreatePaymentForm
 {
+
     public class PaymentsCreatePaymentFormCommandHandler : IRequestHandler<PaymentsCreatePaymentFormCommand, object>
     {
         private readonly IPaymentService _paymentService;
@@ -19,7 +20,8 @@ namespace MextFullstackSaaS.Application.Features.Payments.Commands.CreatePayment
 
         public Task<object> Handle(PaymentsCreatePaymentFormCommand request, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            return _paymentService.CreateCheckoutFormAsync(cancellationToken);
         }
     }
+
 }

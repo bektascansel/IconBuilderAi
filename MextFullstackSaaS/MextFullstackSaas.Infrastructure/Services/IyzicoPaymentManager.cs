@@ -23,8 +23,6 @@ namespace MextFullstackSaaS.Infrastructure.Services
 
         public async Task<object> CreateCheckoutFormAsync(CancellationToken cancellationToken)
         {
-            var conversationId = "123456789";
-
             CreateCheckoutFormInitializeRequest request = new CreateCheckoutFormInitializeRequest
             {
                 Locale = Locale.TR.ToString(),
@@ -34,7 +32,7 @@ namespace MextFullstackSaaS.Infrastructure.Services
                 Currency = Currency.TRY.ToString(),
                 BasketId = "B123456",
                 PaymentGroup = PaymentGroup.PRODUCT.ToString(),
-                CallbackUrl = $"http://localhost:5262/payment-success?conversationId={conversationId}"
+                CallbackUrl = "https://localhost:7281/api/Payments/payment-result/"
             };
 
             List<int> enabledInstallments = new List<int>();
@@ -82,7 +80,8 @@ namespace MextFullstackSaaS.Infrastructure.Services
                 Id = "BI101",
                 Name = "IconBuilderAI 10 credits",
                 ItemType = BasketItemType.VIRTUAL.ToString(),
-                Price = "100"
+                Price = "100",
+                Category1 = "Credits"
             };
             basketItems.Add(firstBasketItem);
 

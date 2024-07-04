@@ -1,6 +1,5 @@
 ﻿using MediatR;
 using MextFullstackSaaS.Application.Features.Payments.Commands.CreatePaymentForm;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace MextFullstackSaaS.WebApi.Controllers
@@ -21,5 +20,13 @@ namespace MextFullstackSaaS.WebApi.Controllers
         {
             return Ok(await _mediator.Send(new PaymentsCreatePaymentFormCommand(), cancellationToken));
         }
+
+        [HttpPost("payment-result")]
+        public async Task<IActionResult> PaymentResultAsync([FromForm] string token, CancellationToken cancellationToken)
+        {
+            return Redirect($"http://localhost:5262/payment-success?token={token}");
+        }
+
+
     }
 }
