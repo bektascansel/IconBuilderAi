@@ -26,7 +26,7 @@ namespace MextFullstackSaaS.Infrastructure.Services
         }
 
         private const int OneCreditPrice = 10;
-        private const string CallbackUrl = "https://localhost:7169/api/Payments/payment-result/";
+        private const string CallbackUrl = "https://localhost:7169/api/Payments/complete-result/";
 
         public PaymentsCreateCheckoutFormResponse CreateCheckoutForm(PaymentsCreateCheckoutFormRequest userRequest)
         {
@@ -67,7 +67,7 @@ namespace MextFullstackSaaS.Infrastructure.Services
                 GsmNumber = userRequest.PaymentDetail.PhoneNumber,
                 Email = userRequest.PaymentDetail.Email,
                 IdentityNumber = "74300864791",
-                LastLoginDate = userRequest.PaymentDetail.LastLoginDate.ToString(),
+                LastLoginDate = userRequest.PaymentDetail.LastLoginDate.ToString("yyyy-MM-dd HH:mm:ss"),
                 RegistrationDate = "2013-04-21 15:12:09",
                 RegistrationAddress = userRequest.PaymentDetail.Address,
                 Ip = "85.34.78.112",
@@ -122,6 +122,30 @@ namespace MextFullstackSaaS.Infrastructure.Services
                 TokenExpireTime = checkoutFormInitialize.TokenExpireTime,
                 CheckoutFormContent = checkoutFormInitialize.CheckoutFormContent,
                 PaymentPageUrl = checkoutFormInitialize.PaymentPageUrl
+            };
+        }
+
+        public PaymentsCheckPaymentByTokenResponse CheckPaymentByToken(string token)
+        {
+            var conversationId = Guid.NewGuid().ToString();
+
+            RetrieveCheckoutFormRequest request = new RetrieveCheckoutFormRequest
+            {
+                ConversationId = conversationId,
+                Token = token,
+                Locale = Locale.TR.ToString()
+            };
+
+            CheckoutForm checkoutForm = CheckoutForm.Retrieve(request, _options);
+
+            return new PaymentsCheckPaymentByTokenResponse()
+            {
+                ConversationId = conversationId,
+                IsSuccess = checkoutForm.PaymentStatus.ToLowerInvariant() == "success",
+                PaymentStatus = checkoutForm.PaymentStatus,
+                ErrorCode = checkoutForm.ErrorCode,
+                ErrorGroup = checkoutForm.ErrorGroup,
+                ErrorMessage = checkoutForm.ErrorMessage
             };
         }
     }

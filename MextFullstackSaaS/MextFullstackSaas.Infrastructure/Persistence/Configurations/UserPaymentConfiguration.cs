@@ -31,6 +31,9 @@ namespace MextFullstackSaaS.Infrastructure.Persistence.Configurations
                 .HasMaxLength(300)
                 .IsRequired();
 
+            builder.HasIndex(x => x.Token)
+                .IsUnique();
+
             // Price
             builder.Property(x => x.Price)
                 .IsRequired();

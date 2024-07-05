@@ -3,17 +3,20 @@ using System;
 using MextFullstackSaaS.Infrastructure.Persistence.Contexts;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 #nullable disable
 
-namespace MextFullstackSaaS.Infrastructure.Migrations
+namespace MextFullstackSaaS.Infrastructure.Persistence.Migrations.ApplicationDB
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240705115004_ConversationIdFieldsAdded")]
+    partial class ConversationIdFieldsAdded
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -233,9 +236,6 @@ namespace MextFullstackSaaS.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("Token")
-                        .IsUnique();
-
                     b.HasIndex("UserId");
 
                     b.ToTable("UserPayments", (string)null);
@@ -433,7 +433,7 @@ namespace MextFullstackSaaS.Infrastructure.Migrations
                         {
                             Id = new Guid("35c16d2a-f25b-4701-9a74-ea1fb7ed6d93"),
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "a20acbe4-f1fa-484d-859c-4b17bd776e9b",
+                            ConcurrencyStamp = "26138b63-8237-45e0-a10c-68d5097bdbbf",
                             CreatedByUserId = "35c16d2a-f25b-4701-9a74-ea1fb7ed6d93",
                             CreatedOn = new DateTimeOffset(new DateTime(2024, 5, 22, 13, 16, 31, 0, DateTimeKind.Unspecified), new TimeSpan(0, 3, 0, 0, 0)),
                             Email = "mextuser@gmail.com",
@@ -443,7 +443,7 @@ namespace MextFullstackSaaS.Infrastructure.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "MEXTUSER@GMAIL.COM",
                             NormalizedUserName = "MEXTUSER",
-                            PasswordHash = "AQAAAAIAAYagAAAAEPfXLNAJpRJlwcS0ZZVtBaP296aoaE1/FesXotgOU6sJRr1awRsbk6omtKw+/YuejA==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEJVC+1MfpcUzPSS88jPfABIaLC6vMhbCCdA2Kt22CuC5yacWbA8P1O4HHQxwwPw2sQ==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "6c185769-9f7b-47e8-a70c-dc7b892089de",
                             TwoFactorEnabled = false,
