@@ -22,5 +22,6 @@ namespace MextFullstackSaaS.Domain.Identity
         public string? ModifiedByUserId { get; set; }
 
         public ICollection<Order> Orders { get; set; }
+        public ICollection<UserPayment> Payments { get; set; }
     }
 }

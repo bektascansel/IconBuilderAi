@@ -24,7 +24,7 @@ namespace MextFullstackSaaS.WebApi.Controllers
         [HttpPost("payment-result")]
         public async Task<IActionResult> PaymentResultAsync([FromForm] string token, CancellationToken cancellationToken)
         {
-            return Redirect($"http://localhost:5262/payment-success?token={token}");
+            return Redirect($"http://localhost:5067/payment-success?token={token}");
         }
 
 

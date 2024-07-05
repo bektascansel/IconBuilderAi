@@ -18,6 +18,8 @@ namespace MextFullstackSaaS.Infrastructure.Persistence.Contexts
         public DbSet<Order> Orders { get; set; }
         public DbSet<UserBalance> UserBalances { get; set; }
         public DbSet<UserBalanceHistory> UserBalanceHistories { get; set; }
+        public DbSet<UserPayment> UserPayments { get; set; }
+        public DbSet<UserPaymentHistory> UserPaymentHistories { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
