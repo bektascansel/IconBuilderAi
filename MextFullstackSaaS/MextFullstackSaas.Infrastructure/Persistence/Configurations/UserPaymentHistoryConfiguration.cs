@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using MextFullstackSaaS.Domain.Entities;
+﻿using MextFullstackSaaS.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
@@ -16,6 +11,11 @@ namespace MextFullstackSaaS.Infrastructure.Persistence.Configurations
             // ID
             builder.HasKey(x => x.Id);
             builder.Property(x => x.Id).ValueGeneratedOnAdd();
+
+            // ConversationId
+            builder.Property(x => x.ConversationId)
+                .HasMaxLength(100)
+                .IsRequired(false);
 
             // Status
             builder.Property(x => x.Status)

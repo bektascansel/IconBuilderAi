@@ -17,5 +17,6 @@ namespace MextFullstackSaaS.Domain.Entities
         public int Amount { get; set; }
         public int PreviousCredits { get; set; }
         public int CurrentsCredits { get; set; }
+
     }
 }

@@ -7,7 +7,7 @@ namespace MextFullstackSaaS.Domain.Entities
 {
     public class UserPayment : EntityBase<Guid>
     {
-        public string ConversationId { get; set; }
+     
         public string BasketId { get; set; }
         public string Token { get; set; }
         public decimal Price { get; set; }

@@ -14,7 +14,7 @@ namespace MextFullstackSaaS.Domain.Entities
         public string? Note { get; set; }
         public Guid UserPaymentId { get; set; }
         public UserPayment UserPayment { get; set; }
-
+        public string? ConversationId { get; set; }
 
     }
 }

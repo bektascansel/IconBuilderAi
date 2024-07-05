@@ -29,7 +29,7 @@ namespace MextFullstackSaaS.Application.Features.Payments.Commands.CreatePayment
 
             var userRequest = new PaymentsCreateCheckoutFormRequest(paymentDetail, request.Credits);
 
-            var response = await _paymentService.CreateCheckoutFormAsync(userRequest, cancellationToken);
+            var response =  _paymentService.CreateCheckoutForm(userRequest);
 
             return new ResponseDto<PaymentsCreatePaymentFormDto>();
         }
