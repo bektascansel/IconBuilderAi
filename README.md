@@ -57,3 +57,18 @@ Sevcan Çiçek
 
 ## Acknowledgements
 We would like to thank all our team members who contributed to the development of this project and our mentors who guided us.
+
+## Pictures of Project
+![1719400746783](https://github.com/user-attachments/assets/756c6347-35f1-4ba6-a9cb-eaf075bcc567)
+
+
+![Ekran görüntüsü 2024-08-01 142757](https://github.com/user-attachments/assets/7e38e587-98f7-403d-b0b3-136e0990ed41)
+
+
+![Ekran görüntüsü 2024-08-01 142731](https://github.com/user-attachments/assets/775f29c0-5998-4bce-8753-d0e585f9b3bd)
+
+![Ekran görüntüsü 2024-08-01 142645](https://github.com/user-attachments/assets/ddeb9b87-d8a1-4797-ad59-a223b0314508)
+
+![Ekran görüntüsü 2024-08-01 142608](https://github.com/user-attachments/assets/3e47cc22-a39d-450b-b5d4-890efff5d713)
+
+
